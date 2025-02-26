@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://bjde1ctybxjkm"]
+
+[ext_resource type="PackedScene" uid="uid://bkt2qp7430moc" path="res://SonicAssets/Prefabs/Misc/homing_target.tscn" id="1_bgdka"]
+[ext_resource type="PackedScene" uid="uid://fbg75jfyw6rq" path="res://SonicAssets/Prefabs/Particles/BalloonPop/[particles]_balloon_pop.tscn" id="2_namh8"]
+[ext_resource type="PackedScene" uid="uid://bkl7d86ygm4b4" path="res://SonicAssets/Models/Interactables/balloon.blend" id="4_6anpg"]
+[ext_resource type="Script" path="res://Scripts/Interactables/Balloon.cs" id="5_3sili"]
+[ext_resource type="Material" uid="uid://be2sopr8d883e" path="res://SonicAssets/Models/Interactables/textures/cmn_obj_balloon02_balloon.tres" id="5_5midq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kgwva"]
+radius = 1.0
+
+[node name="[Interactable] Baloon" type="Node3D" node_paths=PackedStringArray("BalloonMesh")]
+script = ExtResource("5_3sili")
+ExplosionParticles = ExtResource("2_namh8")
+BalloonMesh = NodePath("Offset/balloon/cmn_obj_balloon02_balloon")
+
+[node name="Offset" type="Node3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="HomingTarget" parent="Offset" instance=ExtResource("1_bgdka")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="Hitbox" type="Area3D" parent="Offset"]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Offset/Hitbox"]
+shape = SubResource("SphereShape3D_kgwva")
+
+[node name="balloon" parent="Offset" instance=ExtResource("4_6anpg")]
+
+[node name="cmn_obj_balloon02_balloon" parent="Offset/balloon" index="2"]
+surface_material_override/0 = ExtResource("5_5midq")
+
+[connection signal="body_entered" from="Offset/Hitbox" to="." method="OnBodyEnter"]
+
+[editable path="Offset/balloon"]

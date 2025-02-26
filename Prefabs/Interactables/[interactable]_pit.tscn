@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8tj5swvoc1w8"]
+
+[ext_resource type="Script" path="res://Scripts/Interactables/Hitbox.cs" id="1_js6uq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_piim0"]
+size = Vector3(10000, 1, 10000)
+
+[node name="Pit" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -200, 0)
+collision_mask = 7
+script = ExtResource("1_js6uq")
+IsInstaKill = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_piim0")

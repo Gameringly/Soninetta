@@ -1,0 +1,214 @@
+[gd_scene load_steps=19 format=3 uid="uid://drxsl3jdi408q"]
+
+[ext_resource type="Script" path="res://Scripts/Player/PlayerCamera.cs" id="1_2tidy"]
+[ext_resource type="PackedScene" uid="uid://yqt1g36ql8oc" path="res://Particles/AnimeSpeedLines/anime_speed_lines_ui.tscn" id="2_ul7xb"]
+[ext_resource type="Shader" uid="uid://c7it00f2e2w28" path="res://Particles/AnimeSpeedLines/AnimeSpeedLinesShader.tres" id="3_1jlst"]
+[ext_resource type="Script" path="res://Scripts/Player/OnePlayerUI.cs" id="4_j2y3s"]
+[ext_resource type="Texture2D" uid="uid://cqofbakde8t6f" path="res://SonicAssets/Images/HomingIcon.png" id="5_66nqt"]
+[ext_resource type="Texture2D" uid="uid://dl3ly6w48io1y" path="res://SonicAssets/Images/HomingOffscreenIcon.png" id="6_nvr76"]
+[ext_resource type="Theme" uid="uid://di28qbb7lki3f" path="res://Misc/MenuTheme.tres" id="7_bdpbj"]
+[ext_resource type="Script" path="res://Scripts/Effects/Filters.cs" id="8_b1jtx"]
+[ext_resource type="Shader" uid="uid://cwjveml70gxig" path="res://Shaders/WaterFilter.tres" id="9_cjxnj"]
+[ext_resource type="Shader" uid="uid://bclbs78tdhap8" path="res://Shaders/ImpactFrameFilter.tres" id="10_5nsvw"]
+[ext_resource type="Shader" uid="uid://f66grdn2riri" path="res://Shaders/RetroFilter.tres" id="11_bvgdo"]
+[ext_resource type="Shader" uid="uid://cnkq8qiscg0sj" path="res://Shaders/ChromaticAberrationFilter.tres" id="12_0egqd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wrdia"]
+shader = ExtResource("3_1jlst")
+shader_parameter/Color = Color(1, 1, 1, 1)
+shader_parameter/CenterScale = 0.7
+shader_parameter/Sharpness = 10.0
+shader_parameter/Spacing = 0.95
+shader_parameter/Opacity = 0.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_234o8"]
+radius = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2gmh8"]
+shader = ExtResource("9_cjxnj")
+shader_parameter/DeformTimeScale2 = Vector2(-0.2, -0.2)
+shader_parameter/DeformTimeScale1 = Vector2(0.1, 0.1)
+shader_parameter/Color1 = Color(0, 0.67429, 0.67429, 1)
+shader_parameter/Scroll1 = Vector2(0.01, 0.01)
+shader_parameter/Scroll2 = Vector2(-0.02, -0.02)
+shader_parameter/Color2 = Color(0, 0.307502, 0.800272, 1)
+shader_parameter/Opacity = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l2hb8"]
+shader = ExtResource("10_5nsvw")
+shader_parameter/Color = Color(1, 1, 1, 1)
+shader_parameter/Multiplier = 100.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v4cul"]
+shader = ExtResource("11_bvgdo")
+shader_parameter/Resolution = Vector2(320, 244)
+shader_parameter/RedOffset = Vector2(-0.001, 0)
+shader_parameter/GreenOffset = Vector2(0.001, 0)
+shader_parameter/BlueOffset = Vector2(0.001, 0)
+shader_parameter/Strength = 0.5
+shader_parameter/ColorsCountPerChannel = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uyn3e"]
+shader = ExtResource("12_0egqd")
+shader_parameter/RedOffset = Vector2(-0.001, 0)
+shader_parameter/GreenOffset = Vector2(0.001, 0)
+shader_parameter/BlueOffset = Vector2(0.001, 0)
+shader_parameter/Strength = 0.5
+
+[node name="SubViewportContainer" type="SubViewportContainer"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+msaa_3d = 1
+screen_space_aa = 1
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
+gui_disable_input = true
+size = Vector2i(2, 2)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport" node_paths=PackedStringArray("AnimeSpeedLinesRect", "Filters")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -15.7276, -1.39648, -2.093)
+current = true
+near = 0.001
+script = ExtResource("1_2tidy")
+UpRepositionSpeed = 10.0
+ConstantDirectionRepositionSpeed = 80.0
+CameraLimitsY = Vector2(-0.2, 0.2)
+ConstantCameraDirection = Quaternion(0, -0.707, 0, 0.707)
+CameraOffset = Vector3(0, 1.5, 0)
+AnimeSpeedLinesRect = NodePath("AnimeSpeedLinesUI")
+Filters = NodePath("../Filters")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="SubViewport/Camera3D"]
+current = true
+
+[node name="AnimeSpeedLinesUI" parent="SubViewport/Camera3D" instance=ExtResource("2_ul7xb")]
+material = SubResource("ShaderMaterial_wrdia")
+
+[node name="Area3D" type="Area3D" parent="SubViewport/Camera3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/Camera3D/Area3D"]
+shape = SubResource("SphereShape3D_234o8")
+
+[node name="PlayerUI" type="Control" parent="SubViewport" node_paths=PackedStringArray("HomingIcon", "HomingOffscreenIcon", "BoostUIContainer", "BoostMeter")]
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_bdpbj")
+script = ExtResource("4_j2y3s")
+HomingIcon = NodePath("HomingIcon")
+HomingOffscreenIcon = NodePath("HomingOffscreenIcon")
+BoostUIContainer = NodePath("BoostMeter")
+BoostMeter = NodePath("BoostMeter/MarginContainer/VBoxContainer/ProgressBar")
+
+[node name="HomingIcon" type="Sprite2D" parent="SubViewport/PlayerUI"]
+position = Vector2(-453, -173)
+scale = Vector2(0.768293, 0.768293)
+texture = ExtResource("5_66nqt")
+offset = Vector2(0.59, -3.79)
+
+[node name="HomingOffscreenIcon" type="Sprite2D" parent="SubViewport/PlayerUI"]
+position = Vector2(-453, -173)
+scale = Vector2(0.768293, 0.768293)
+texture = ExtResource("6_nvr76")
+offset = Vector2(0.59, -3.79)
+
+[node name="BoostMeter" type="ColorRect" parent="SubViewport/PlayerUI"]
+custom_minimum_size = Vector2(500, 150)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = -200.0
+offset_right = 550.0
+offset_bottom = -50.0
+grow_vertical = 0
+color = Color(0, 0, 0, 0.501961)
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport/PlayerUI/BoostMeter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/PlayerUI/BoostMeter/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SubViewport/PlayerUI/BoostMeter/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "BOOST"
+
+[node name="ProgressBar" type="ProgressBar" parent="SubViewport/PlayerUI/BoostMeter/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+value = 100.0
+
+[node name="Filters" type="CanvasLayer" parent="SubViewport" node_paths=PackedStringArray("ImpactFrameFilter", "WaterFilter")]
+script = ExtResource("8_b1jtx")
+ImpactFrameFilter = NodePath("ImpactFrame")
+WaterFilter = NodePath("WaterFilter")
+
+[node name="WaterFilter" type="ColorRect" parent="SubViewport/Filters"]
+visible = false
+material = SubResource("ShaderMaterial_2gmh8")
+custom_minimum_size = Vector2(20, 20)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="ImpactFrame" type="ColorRect" parent="SubViewport/Filters"]
+visible = false
+material = SubResource("ShaderMaterial_l2hb8")
+custom_minimum_size = Vector2(20, 20)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="RetroFilter" type="ColorRect" parent="SubViewport/Filters"]
+visible = false
+material = SubResource("ShaderMaterial_v4cul")
+custom_minimum_size = Vector2(20, 20)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="ChromaticAberrationFilter" type="ColorRect" parent="SubViewport/Filters"]
+visible = false
+material = SubResource("ShaderMaterial_uyn3e")
+custom_minimum_size = Vector2(20, 20)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+mouse_filter = 2

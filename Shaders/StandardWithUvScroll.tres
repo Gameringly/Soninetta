@@ -1,0 +1,104 @@
+[gd_resource type="VisualShader" load_steps=10 format=3 uid="uid://cq4gpg3v8rw38"]
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_3rq7m"]
+parameter_name = "Specular"
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_hqexd"]
+parameter_name = "Albedo"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_pfvhq"]
+source = 5
+
+[sub_resource type="VisualShaderNodeMultiplyAdd" id="VisualShaderNodeMultiplyAdd_gitea"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(1, 1), 2, Vector2(0, 0)]
+op_type = 1
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_d0ktx"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeVec2Parameter" id="VisualShaderNodeVec2Parameter_1xhk8"]
+parameter_name = "ScrollSpeed"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_xjlph"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_a0ysn"]
+parameter_name = "Metallic"
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_7v5rf"]
+parameter_name = "Roughness"
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform vec2 ScrollSpeed;
+uniform sampler2D Albedo;
+uniform float Metallic;
+uniform float Roughness;
+uniform float Specular;
+
+
+
+void fragment() {
+// Vector2Parameter:6
+	vec2 n_out6p0 = ScrollSpeed;
+
+
+// Input:5
+	float n_out5p0 = TIME;
+
+
+// Input:7
+	vec2 n_out7p0 = UV;
+
+
+// MultiplyAdd:4
+	vec2 n_out4p0 = fma(n_out6p0, vec2(n_out5p0), n_out7p0);
+
+
+	vec4 n_out3p0;
+// Texture2D:3
+	n_out3p0 = texture(Albedo, n_out4p0);
+
+
+// FloatParameter:8
+	float n_out8p0 = Metallic;
+
+
+// FloatParameter:9
+	float n_out9p0 = Roughness;
+
+
+// FloatParameter:10
+	float n_out10p0 = Specular;
+
+
+// Output:0
+	ALBEDO = vec3(n_out3p0.xyz);
+	METALLIC = n_out8p0;
+	ROUGHNESS = n_out9p0;
+	SPECULAR = n_out10p0;
+
+
+}
+"
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture2DParameter_hqexd")
+nodes/fragment/2/position = Vector2(-800, 440)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_pfvhq")
+nodes/fragment/3/position = Vector2(-92.8472, 244.671)
+nodes/fragment/4/node = SubResource("VisualShaderNodeMultiplyAdd_gitea")
+nodes/fragment/4/position = Vector2(-380, 160)
+nodes/fragment/5/node = SubResource("VisualShaderNodeInput_d0ktx")
+nodes/fragment/5/position = Vector2(-800, 280)
+nodes/fragment/6/node = SubResource("VisualShaderNodeVec2Parameter_1xhk8")
+nodes/fragment/6/position = Vector2(-800, 100)
+nodes/fragment/7/node = SubResource("VisualShaderNodeInput_xjlph")
+nodes/fragment/7/position = Vector2(-800, 360)
+nodes/fragment/8/node = SubResource("VisualShaderNodeFloatParameter_a0ysn")
+nodes/fragment/8/position = Vector2(-60, 420)
+nodes/fragment/9/node = SubResource("VisualShaderNodeFloatParameter_7v5rf")
+nodes/fragment/9/position = Vector2(-60, 600)
+nodes/fragment/10/node = SubResource("VisualShaderNodeFloatParameter_3rq7m")
+nodes/fragment/10/position = Vector2(-60, 780)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 4, 0, 3, 0, 3, 0, 0, 0, 5, 0, 4, 1, 6, 0, 4, 0, 7, 0, 4, 2, 8, 0, 0, 2, 9, 0, 0, 3, 10, 0, 0, 4)

@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://bbn8dw6qgb42j"]
+
+[ext_resource type="Script" path="res://Scripts/Interactables/Spline2DTrigger.cs" id="1_y6d3t"]
+[ext_resource type="Script" path="res://Scripts/Interactables/CameraTrigger.cs" id="2_3rbed"]
+[ext_resource type="Script" path="res://Scripts/Utils/CollissionShapeFromCSGPolygon.cs" id="2_6uck3"]
+
+[sub_resource type="Curve3D" id="Curve3D_jrubx"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, -5, 0, 0, 0, 0, 0, 5, 0, 0, -23.785, 0, 0, -20),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qbxhl"]
+transparency = 1
+albedo_color = Color(0.172549, 0, 0.631373, 0.32549)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_86ugt"]
+backface_collision = true
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_s3u0h"]
+backface_collision = true
+
+[node name="[Trigger] 2D Path Trigger" type="Path3D"]
+curve = SubResource("Curve3D_jrubx")
+
+[node name="CSGPolygon3DHitbox" type="CSGPolygon3D" parent="."]
+visible = false
+polygon = PackedVector2Array(-10, 0, -10, 50, 10, 50, 10, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+smooth_faces = true
+material = SubResource("StandardMaterial3D_qbxhl")
+
+[node name="Area3D_2D" type="Area3D" parent="." node_paths=PackedStringArray("Path")]
+collision_mask = 7
+script = ExtResource("1_y6d3t")
+Path = NodePath("..")
+TwoDimensionalMode = true
+
+[node name="CollisionShape3D_2D" type="CollisionShape3D" parent="Area3D_2D"]
+shape = SubResource("ConcavePolygonShape3D_86ugt")
+
+[node name="Area3D_Camera" type="Area3D" parent="." node_paths=PackedStringArray("CameraCurve")]
+collision_mask = 2
+script = ExtResource("2_3rbed")
+Mode = 4
+CameraCurve = NodePath("..")
+DisableRaycast = true
+CameraDistance = 20.0
+
+[node name="CollisionShape3D_Camera" type="CollisionShape3D" parent="Area3D_Camera"]
+shape = SubResource("ConcavePolygonShape3D_s3u0h")
+
+[node name="CollissionShapeFromCSGPolygon2D" type="Node" parent="." node_paths=PackedStringArray("Shape", "CsgMesh")]
+script = ExtResource("2_6uck3")
+Shape = NodePath("../Area3D_2D/CollisionShape3D_2D")
+CsgMesh = NodePath("../CSGPolygon3DHitbox")
+
+[node name="CollissionShapeFromCSGPolygonCamera" type="Node" parent="." node_paths=PackedStringArray("Shape", "CsgMesh")]
+script = ExtResource("2_6uck3")
+Shape = NodePath("../Area3D_Camera/CollisionShape3D_Camera")
+CsgMesh = NodePath("../CSGPolygon3DHitbox")
+
+[connection signal="curve_changed" from="." to="CollissionShapeFromCSGPolygon2D" method="OnCurveChanged"]
+[connection signal="body_entered" from="Area3D_2D" to="Area3D_2D" method="OnBodyEnter"]
+[connection signal="body_entered" from="Area3D_Camera" to="Area3D_Camera" method="OnBodyEnter"]

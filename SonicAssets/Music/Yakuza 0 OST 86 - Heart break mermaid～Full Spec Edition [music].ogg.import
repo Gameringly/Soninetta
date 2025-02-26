@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://d4il133kjnk44"
+path="res://.godot/imported/Yakuza 0 OST 86 - Heart break mermaid～Full Spec Edition [music].ogg-e0a4128e1443c57d513f7d81211a13b8.oggvorbisstr"
+
+[deps]
+
+source_file="res://SonicAssets/Music/Yakuza 0 OST 86 - Heart break mermaid～Full Spec Edition [music].ogg"
+dest_files=["res://.godot/imported/Yakuza 0 OST 86 - Heart break mermaid～Full Spec Edition [music].ogg-e0a4128e1443c57d513f7d81211a13b8.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

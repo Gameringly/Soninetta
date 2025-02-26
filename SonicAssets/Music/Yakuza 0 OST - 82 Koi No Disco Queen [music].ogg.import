@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c6lixlpqpip18"
+path="res://.godot/imported/Yakuza 0 OST - 82 Koi No Disco Queen [music].ogg-4e476a16dd2d2c53b8eb81f92c1f3c8e.oggvorbisstr"
+
+[deps]
+
+source_file="res://SonicAssets/Music/Yakuza 0 OST - 82 Koi No Disco Queen [music].ogg"
+dest_files=["res://.godot/imported/Yakuza 0 OST - 82 Koi No Disco Queen [music].ogg-4e476a16dd2d2c53b8eb81f92c1f3c8e.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

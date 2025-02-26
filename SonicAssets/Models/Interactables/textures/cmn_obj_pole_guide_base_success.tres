@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://crt71o8y67qcf"]
+
+[ext_resource type="Texture2D" path="res://SonicAssets/Models/Interactables/textures/cmn_obj_pole_guide_abd.dds" id="1_d3ngx"]
+[ext_resource type="Texture2D" uid="uid://cku8yf2lkq300" path="res://SonicAssets/Models/Interactables/textures/cmn_obj_pole_guide_succ_ems.png" id="2_gwig2"]
+
+[resource]
+resource_name = "cmn_obj_pole_guide_base"
+cull_mode = 2
+albedo_texture = ExtResource("1_d3ngx")
+roughness = 0.5
+emission_enabled = true
+emission_energy_multiplier = 2.0
+emission_texture = ExtResource("2_gwig2")

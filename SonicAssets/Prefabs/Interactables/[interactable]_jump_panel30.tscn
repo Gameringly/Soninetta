@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://cksgb7nrtyqif"]
+
+[ext_resource type="Script" path="res://Scripts/Interactables/DirectionalLauncher.cs" id="1_sub02"]
+[ext_resource type="AudioStream" uid="uid://56e2oecde858" path="res://SonicAssets/Audio/Items/se_object_common#28 (objsn_jumpboard; objsn_trickjumpboard).wav" id="2_10blp"]
+[ext_resource type="PackedScene" uid="uid://cgsg4ccq22h5h" path="res://SonicAssets/Models/Interactables/cmn_obj_jumppanel30S.blend" id="3_cmhl6"]
+[ext_resource type="Shader" uid="uid://cq4gpg3v8rw38" path="res://Shaders/StandardWithUvScroll.tres" id="5_4xgd4"]
+[ext_resource type="PackedScene" uid="uid://bq7p16fpdqnv0" path="res://SonicAssets/Prefabs/Particles/[particles] dir_launcher_particles.tscn" id="6_1yqqk"]
+[ext_resource type="Texture2D" path="res://SonicAssets/Models/Interactables/textures/cmn_metal_ms_panelbelt_dif.dds" id="6_vov8x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7q16t"]
+render_priority = 0
+shader = ExtResource("5_4xgd4")
+shader_parameter/ScrollSpeed = Vector2(0, 5)
+shader_parameter/Metallic = 1.0
+shader_parameter/Roughness = 0.5
+shader_parameter/Specular = 1.0
+shader_parameter/Albedo = ExtResource("6_vov8x")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kthcl"]
+size = Vector3(1, 1, 2)
+
+[node name="[Interactable] JumpPanel30Degrees" type="Node3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+script = ExtResource("1_sub02")
+RelativeVelocityDir = Vector3(0, 28, -50)
+LockInputTime = 0.5
+Snap = true
+RelativeSnapPoint = Vector3(0, 0, 2)
+SnapCamera = true
+SoundEffect = ExtResource("2_10blp")
+
+[node name="cmn_obj_jumppanel30S" parent="." instance=ExtResource("3_cmhl6")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+
+[node name="cmn_obj_jumppanel30S_HD" parent="cmn_obj_jumppanel30S" index="0"]
+surface_material_override/3 = SubResource("ShaderMaterial_7q16t")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_kthcl")
+
+[node name="DirLauncherParticles" parent="." instance=ExtResource("6_1yqqk")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0)
+
+[connection signal="OnLaunching" from="." to="DirLauncherParticles" method="set_emitting" binds= [true]]
+[connection signal="body_entered" from="Area3D" to="." method="OnTriggerEnter"]
+
+[editable path="cmn_obj_jumppanel30S"]
