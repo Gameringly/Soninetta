@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://tc8f2l3mmr2b"]
+
+[ext_resource type="Theme" uid="uid://di28qbb7lki3f" path="res://Misc/MenuTheme.tres" id="1_dikgo"]
+[ext_resource type="Script" path="res://Scripts/Ui/ButtonPromptTextLabel.cs" id="2_6v2hk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7f5pr"]
+resource_local_to_scene = true
+size = Vector3(20, 10, 10)
+
+[node name="[Trigger] InputPrompt" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -69.5194)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." node_paths=PackedStringArray("ColorRect")]
+visible = false
+z_index = 256
+custom_minimum_size = Vector2(1000, 0)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_top = -183.0
+offset_right = 500.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme = ExtResource("1_dikgo")
+bbcode_enabled = true
+text = "[center]Use BBCode tag \"input\" with action name. For example [input]actionjump[/input][/center]"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+script = ExtResource("2_6v2hk")
+ColorRect = NodePath("ColorRect")
+
+[node name="ColorRect" type="ColorRect" parent="RichTextLabel"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+color = Color(0, 0, 0, 0.501961)
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_7f5pr")
+
+[connection signal="body_entered" from="Area3D" to="RichTextLabel" method="OnBodyEnter"]
+[connection signal="body_exited" from="Area3D" to="RichTextLabel" method="OnBodyExit"]

@@ -1,0 +1,1233 @@
+[gd_scene load_steps=101 format=3 uid="uid://be4pyxrkfbe72"]
+
+[ext_resource type="Script" path="res://Scripts/System/StageData.cs" id="1_jfse3"]
+[ext_resource type="PackedScene" uid="uid://d0l71if36iysv" path="res://Games/Example game/Levels/TestLevel/TestLevelFloor.blend" id="1_uldn8"]
+[ext_resource type="AudioStream" uid="uid://cg34xurj18be8" path="res://SonicAssets/Music/Beyond The Speed Of... Sonic Sessions.ogg" id="2_mymat"]
+[ext_resource type="PackedScene" uid="uid://btqvh6bandifd" path="res://SonicAssets/Prefabs/Interactables/[interactable]_spring_red.tscn" id="2_s6x8v"]
+[ext_resource type="PackedScene" uid="uid://clt71rt2khju8" path="res://SonicAssets/Prefabs/Player/PlayersManager.tscn" id="3_4w3j3"]
+[ext_resource type="Script" path="res://Scripts/System/ApplyWorldEnvironmentSettings.cs" id="3_hs168"]
+[ext_resource type="PackedScene" uid="uid://b2myq4ve7aw2x" path="res://SonicAssets/Prefabs/Interactables/Obstacles/[obstacle]_thorns.tscn" id="5_ojf5n"]
+[ext_resource type="PackedScene" uid="uid://crxq2s1vls3rc" path="res://SonicAssets/Prefabs/Items/[item]_ring.tscn" id="8_voj5x"]
+[ext_resource type="PackedScene" uid="uid://dihc118cta0m7" path="res://SonicAssets/Prefabs/Items/[item]_physics_ring.tscn" id="9_2138c"]
+[ext_resource type="Script" path="res://Scripts/Interactables/LostWorldGravityTrigger.cs" id="10_2bboj"]
+[ext_resource type="PackedScene" uid="uid://bp1fwwogqqkfy" path="res://SonicAssets/Prefabs/Interactables/[interactable]_speed_pad.tscn" id="11_kys5k"]
+[ext_resource type="Script" path="res://Scripts/Interactables/CameraTrigger.cs" id="12_srflh"]
+[ext_resource type="PackedScene" uid="uid://qjvpklol5uvl" path="res://Prefabs/Interactables/[interactable]_grind_rail.tscn" id="12_uj43x"]
+[ext_resource type="Script" path="res://Scripts/Interactables/Spline2DTrigger.cs" id="13_60he6"]
+[ext_resource type="Script" path="res://Scripts/Interactables/AutoPathFollow3D.cs" id="15_j8sfa"]
+[ext_resource type="PackedScene" uid="uid://gpc3840r0uj5" path="res://SonicAssets/Prefabs/Interactables/[interactable]_checkpoint_sv.tscn" id="15_jub88"]
+[ext_resource type="PackedScene" uid="uid://dcjip7txdvwhi" path="res://SonicAssets/Prefabs/Interactables/Obstacles/[obstacle]_flamethrower.tscn" id="16_oq74e"]
+[ext_resource type="PackedScene" uid="uid://dcoachq0hf3gd" path="res://SonicAssets/Prefabs/Interactables/Obstacles/[obstacle]_thorn_cylinder.tscn" id="17_0ywdy"]
+[ext_resource type="PackedScene" uid="uid://vwjoljvwo0fw" path="res://SonicAssets/Prefabs/Enemies/Bosses/[boss_arena] boss_egg_flamethrower.tscn" id="18_5tj2u"]
+[ext_resource type="PackedScene" uid="uid://bkt2qp7430moc" path="res://SonicAssets/Prefabs/Misc/homing_target.tscn" id="23_tn5wt"]
+[ext_resource type="PackedScene" uid="uid://cd5ndaer544my" path="res://SonicAssets/Models/Interactables/pulley.blend" id="27_1dkr6"]
+[ext_resource type="AudioStream" uid="uid://dfydddvy8a7fl" path="res://SonicAssets/Audio/Items/se_object_common#34 (objsn_upreel).ogg" id="28_s22lf"]
+[ext_resource type="Material" uid="uid://bqh8sx2pqf5aw" path="res://Games/Example game/Levels/TestLevel/Materials/Numbers.tres" id="37_786hh"]
+[ext_resource type="PackedScene" uid="uid://cqxeq5d8trj0j" path="res://SonicAssets/Prefabs/Interactables/[interactable]_pulley_path.tscn" id="40_sfpp8"]
+[ext_resource type="PackedScene" uid="uid://23jj2uyqxooe" path="res://SonicAssets/Models/Interactables/laserturret.glb" id="41_v0xnb"]
+[ext_resource type="PackedScene" uid="uid://sayh8oi2r3rk" path="res://SonicAssets/Prefabs/Interactables/[interactable]_grind_booster.tscn" id="42_3766v"]
+[ext_resource type="PackedScene" uid="uid://bu2rhr3b5kdrb" path="res://SonicAssets/Prefabs/Interactables/Obstacles/[obstacle]_grind_thorns.tscn" id="42_gwktq"]
+[ext_resource type="Script" path="res://Scripts/Interactables/Grabbable.cs" id="42_vj05h"]
+[ext_resource type="PackedScene" uid="uid://ckuh7n0eskbd" path="res://SonicAssets/Prefabs/Items/[item]_red_ring_1.tscn" id="43_uwck0"]
+[ext_resource type="PackedScene" uid="uid://c4d6ef2j71sxf" path="res://SonicAssets/Prefabs/Items/[item]_red_ring_2.tscn" id="44_vopl1"]
+[ext_resource type="PackedScene" uid="uid://dnulayoi0l3o8" path="res://SonicAssets/Prefabs/Items/[item]_red_ring_3.tscn" id="45_1j0rc"]
+[ext_resource type="PackedScene" uid="uid://bpgng4r75cppe" path="res://SonicAssets/Prefabs/Items/[item]_red_ring_4.tscn" id="46_6etuo"]
+[ext_resource type="PackedScene" uid="uid://bjg1gje70id88" path="res://SonicAssets/Prefabs/Items/[item]_red_ring_5.tscn" id="47_veixa"]
+[ext_resource type="PackedScene" uid="uid://daw4tm8o4oxei" path="res://SonicAssets/Prefabs/Interactables/[interactable]_dash_ring.tscn" id="57_fnrby"]
+[ext_resource type="PackedScene" uid="uid://dhu1smr7ks2e5" path="res://SonicAssets/Prefabs/Interactables/[interactable]_goal_ring.tscn" id="58_8ammw"]
+[ext_resource type="PackedScene" uid="uid://glul7ke1mfjn" path="res://SonicAssets/Prefabs/Enemies/[enemy]_spinner.tscn" id="59_kwumx"]
+[ext_resource type="PackedScene" uid="uid://cbxye0c74s42p" path="res://SonicAssets/Prefabs/Enemies/[enemy]_cop_speeder.tscn" id="59_mxf3s"]
+[ext_resource type="PackedScene" uid="uid://co7vj8imnc6u4" path="res://SonicAssets/Stages/TestStage/test_stage_tutorial.tscn" id="59_nd2cx"]
+[ext_resource type="PackedScene" uid="uid://cf0qstb6i7bk6" path="res://SonicAssets/Prefabs/Enemies/[enemy]_nebula.tscn" id="59_oqs00"]
+[ext_resource type="PackedScene" uid="uid://c1lfp3e5bmdoj" path="res://SonicAssets/Prefabs/Interactables/[interactable]_checkpoint_3d.tscn" id="60_82c8v"]
+[ext_resource type="PackedScene" uid="uid://bq514nf1hehl5" path="res://SonicAssets/Prefabs/Interactables/[interactable]_jump_panel15.tscn" id="60_ewdrt"]
+[ext_resource type="PackedScene" uid="uid://dre8xwwke4ya5" path="res://SonicAssets/Prefabs/Interactables/Obstacles/Laser/[interactable]_laser.tscn" id="60_fac65"]
+[ext_resource type="PackedScene" uid="uid://4lpb7voaefep" path="res://SonicAssets/Prefabs/Enemies/[enemy]_motobug.tscn" id="61_1xi0r"]
+[ext_resource type="PackedScene" uid="uid://mwwlnd3pk6vc" path="res://SonicAssets/Prefabs/Items/[item]_ring10.tscn" id="61_5eskj"]
+[ext_resource type="PackedScene" uid="uid://cksgb7nrtyqif" path="res://SonicAssets/Prefabs/Interactables/[interactable]_jump_panel30.tscn" id="61_cruxb"]
+[ext_resource type="PackedScene" uid="uid://d17bym62436xd" path="res://Prefabs/Interactables/[interactable]_skydiving_section.tscn" id="62_g3e0e"]
+[ext_resource type="PackedScene" uid="uid://d2gmh4mexcq3" path="res://SonicAssets/Prefabs/Enemies/[enemy]_egg_pawn_gun.tscn" id="62_pi0si"]
+[ext_resource type="PackedScene" uid="uid://cvls441klklh1" path="res://Prefabs/Triggers/[trigger]no_2d_trigger.tscn" id="62_t3gf5"]
+[ext_resource type="Material" uid="uid://btlgdeq7b5723" path="res://Games/Example game/Levels/TestLevel/Materials/Walls.tres" id="63_miv03"]
+[ext_resource type="PackedScene" uid="uid://bjde1ctybxjkm" path="res://SonicAssets/Prefabs/Interactables/[interactable]_balloon.tscn" id="64_th5q8"]
+[ext_resource type="PackedScene" uid="uid://c32v53appugpt" path="res://SonicAssets/Prefabs/Interactables/[interactable]_item_box_10_rings.tscn" id="64_tspyj"]
+[ext_resource type="PackedScene" uid="uid://df5r5gehhnovh" path="res://SonicAssets/Prefabs/Interactables/[interactable]_spring_red_wide.tscn" id="65_itsfd"]
+[ext_resource type="PackedScene" uid="uid://2l7w0rd542kc" path="res://SonicAssets/Prefabs/Interactables/[interactable]_transport_pipe.tscn" id="65_w4d8e"]
+[ext_resource type="PackedScene" uid="uid://bbmhfwknyuj0q" path="res://SonicAssets/Prefabs/Items/[item]_skateboard.tscn" id="66_i705k"]
+[ext_resource type="PackedScene" uid="uid://rhb0y8rs74i1" path="res://SonicAssets/Prefabs/Interactables/[interactable]_pole.tscn" id="66_ri0yi"]
+[ext_resource type="PackedScene" uid="uid://drw7s3yh0m7c3" path="res://SonicAssets/Prefabs/Items/[item]_water_bubble.tscn" id="67_msila"]
+[ext_resource type="PackedScene" uid="uid://d4hlu7ecb04dc" path="res://SonicAssets/Prefabs/Items/[item]_chaosemerald_red.tscn" id="67_opu58"]
+[ext_resource type="PackedScene" uid="uid://bc28wx6y12yqw" path="res://SonicAssets/Prefabs/Items/[item]_chaosemerald_blue.tscn" id="68_x307c"]
+[ext_resource type="PackedScene" uid="uid://bpcglabq44f3f" path="res://SonicAssets/Prefabs/Items/[item]_chaosemerald_yellow.tscn" id="69_rfsny"]
+[ext_resource type="PackedScene" uid="uid://ct2jfrkp0bbi4" path="res://SonicAssets/Prefabs/Items/[item]_chaosemerald_green.tscn" id="70_7cys4"]
+[ext_resource type="PackedScene" uid="uid://cnn22cxvpg2a5" path="res://SonicAssets/Prefabs/Items/[item]_chaosemerald_gray.tscn" id="71_dhmce"]
+[ext_resource type="PackedScene" uid="uid://c7xbejrme8vlw" path="res://SonicAssets/Prefabs/Items/[item]_chaosemerald_cyan.tscn" id="72_y8i2r"]
+[ext_resource type="PackedScene" uid="uid://blny1e7u71001" path="res://SonicAssets/Prefabs/Items/[item]_chaosemerald_magenta.tscn" id="73_w7yg5"]
+[ext_resource type="PackedScene" uid="uid://bv2cv2nejm2w" path="res://SonicAssets/Prefabs/Interactables/[interactable]_special_stage_entrance.tscn" id="74_css6n"]
+[ext_resource type="Material" uid="uid://degj6i8f466ax" path="res://Materials/Water.tres" id="76_gcfb4"]
+[ext_resource type="Script" path="res://Scripts/Interactables/WaterTrigger.cs" id="77_cr33u"]
+[ext_resource type="PackedScene" uid="uid://bbn8dw6qgb42j" path="res://Prefabs/Triggers/[trigger]2d_path_trigger.tscn" id="78_02h0o"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4wo0b"]
+sky_energy_multiplier = 2.0
+
+[sub_resource type="Sky" id="Sky_1ndst"]
+sky_material = SubResource("ProceduralSkyMaterial_4wo0b")
+
+[sub_resource type="Environment" id="Environment_wj3j7"]
+background_mode = 2
+sky = SubResource("Sky_1ndst")
+ambient_light_source = 2
+ambient_light_color = Color(0.501961, 0.501961, 0.501961, 1)
+ssao_enabled = true
+
+[sub_resource type="Curve3D" id="Curve3D_ghmrj"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, -100, 0, 0, 0, 0, 0, 0, 0, 0, 100),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vwwdn"]
+margin = 0.0
+height = 200.0
+radius = 80.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_htx3u"]
+size = Vector3(5, 10, 1)
+
+[sub_resource type="Curve3D" id="Curve3D_7q6si"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -14.221, 0, 11.078, 0, 0, 0, 0, 0, 0, -14.221, 0, -87.926),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xhjod"]
+size = Vector3(5, 1, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1ymkg"]
+size = Vector3(5, 1, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ntra2"]
+size = Vector3(20, 40, 20)
+
+[sub_resource type="Curve3D" id="Curve3D_cftbc"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 40, -40, 0, 0, 0, 0, 0, 40, 0, 0, 0, 0, 40, 0, 0, 0, 0, 0, -40, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -40, 0, 0, -40, 0, 0, 40, -40, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="Curve3D" id="Curve3D_qnddl"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0, -40, 40, 0),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ubc7b"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_i1rxw"]
+material = SubResource("StandardMaterial3D_ubc7b")
+top_radius = 5.0
+bottom_radius = 5.0
+height = 0.1
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_s8wps"]
+height = 0.1
+radius = 5.0
+
+[sub_resource type="Curve3D" id="Curve3D_ebwb8"]
+_data = {
+"points": PackedVector3Array(3.27043, 0.704094, 54.5189, -3.27043, -0.704094, -54.5189, 0, 0, 0, 30.01, 0, 92.381, -30.0095, -5.79688, -92.3814, 0, 0, -100, 9.44276, -4.10416, 56.031, -9.44276, 4.10416, -56.031, 0, 10, -200, 0, 0, -50, 0, 0, 50, 15.5791, 49.2141, -194.154, 0, 0, 50, 0, 0, 0, -45.8366, 53.1454, -202.292),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6fv6k"]
+size = Vector3(2, 2, 0.5)
+
+[sub_resource type="Curve3D" id="Curve3D_wnu2v"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -200, -4.1, 0.1, 0.4, 4.1, -0.1, -0.4, 15.2495, 4.35621, -215.699, -12.9629, 2.42359, 0.645309, 12.9629, -2.42359, -0.645309, 35.1577, -7, -236.129, -10, 3.8, 4.3, 10, -3.8, -4.3, 72.1577, -21, -316.129, -6, -4, 3, 6, 4, -3, 98.1199, -13.1372, -316.14, 24, -2, -6, -24, 2, 6, 79.1577, 21, -311.129, -6, 2, 1, 6, -2, -1, 79.1577, -21, -312.129, 0, 0, 0, 0, 0, 0, 96.7646, -20.7271, -316.14),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 1.35)
+}
+point_count = 9
+
+[sub_resource type="Curve3D" id="Curve3D_nompr"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 10, 0, 0, -10, 0, 50, -10, 0, 0, 10, 0, 0, 10, 0, 50, -50, 0, 0, -10, 0, 0, 0, 0, 50, -50),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_mikri"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6000, 0, 0, 0, 0, 0, 0, 0, 50, 6000, 0),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_26ldo"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_epbnn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6eqhl"]
+size = Vector3(1.5, 1.6, 1.6)
+
+[sub_resource type="Curve3D" id="Curve3D_e1dhr"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, -11, 0, 0, 11, 0, 0, 100, 0, 0, -18, 0, 0, 18, 0, 0, 200, -50, 0, 0, 0, 0, 0, 0, 0, 250, -50, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_vw3je"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 2, -10, 0, 0, 10, 0, 0, 22.5, 7, 7, 0, 0, 4, 0, 0, 0, 42, 0, 2, 0, 0, 1, 0, 0, 0, 42, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 1.5, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_u4apl"]
+material = ExtResource("63_miv03")
+top_radius = 20.0
+bottom_radius = 20.0
+height = 20.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_84nkg"]
+height = 20.0
+radius = 20.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_cm40f"]
+material = ExtResource("76_gcfb4")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ey6ct"]
+
+[sub_resource type="Curve3D" id="Curve3D_kb3vi"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, -23.785, 0, 0, -700),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_20mfj"]
+size = Vector3(10, 123.319, 174.531)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8688x"]
+size = Vector3(10, 93.0875, 514.355)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n7nsl"]
+size = Vector3(1000, 150, 1000)
+
+[node name="TestStage" type="Node3D"]
+
+[node name="StageData" type="Node" parent="."]
+script = ExtResource("1_jfse3")
+StageZoneName = "Test Stage"
+StageUniqueIdentifier = "TestStage"
+StageMusic = ExtResource("2_mymat")
+HasRedRings = true
+SRankTime = 5.0
+SRankRings = 10
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wj3j7")
+script = ExtResource("3_hs168")
+
+[node name="Player" parent="." instance=ExtResource("3_4w3j3")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -182.468, 12.7155, -56.7355)
+
+[node name="Stage" type="Node3D" parent="."]
+
+[node name="TestLevelFloor" parent="Stage" instance=ExtResource("1_uldn8")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="DirectionalLight3DStage" type="DirectionalLight3D" parent="Stage"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 9.82189, 0)
+light_energy = 2.0
+shadow_enabled = true
+shadow_bias = 0.05
+shadow_normal_bias = 6.951
+directional_shadow_mode = 0
+directional_shadow_max_distance = 1000.0
+
+[node name="Items" type="Node3D" parent="Stage"]
+
+[node name="[Interactable] Spring_Red" parent="Stage/Items" instance=ExtResource("2_s6x8v")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 79.722, 1.22158, -1.41835)
+
+[node name="[Interactable] Spring_Red slow but high" parent="Stage/Items" instance=ExtResource("2_s6x8v")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 32.1546, 1.22158, -19.0304)
+KeepVelocityDistance = 100.0
+
+[node name="[Obstacle] Thorns" parent="Stage/Items" instance=ExtResource("5_ojf5n")]
+
+[node name="[Item] Ring" parent="Stage/Items" instance=ExtResource("8_voj5x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.38929, 0)
+
+[node name="[Item] PhysicsRing" parent="Stage/Items" instance=ExtResource("9_2138c")]
+
+[node name="[Interactable] Speed_Pad" parent="Stage/Items" instance=ExtResource("11_kys5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.9458, 1.45692, -0.108413)
+
+[node name="[Trigger] LostWorldGravityTriggerTowards2" type="Area3D" parent="Stage/Items" node_paths=PackedStringArray("Path")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 100, 5)
+collision_mask = 7
+script = ExtResource("10_2bboj")
+Path = NodePath("Path3D")
+
+[node name="Path3D" type="Path3D" parent="Stage/Items/[Trigger] LostWorldGravityTriggerTowards2"]
+curve = SubResource("Curve3D_ghmrj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stage/Items/[Trigger] LostWorldGravityTriggerTowards2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_vwwdn")
+
+[node name="[Trigger] LostWorldGravityTriggerAgainst2" type="Area3D" parent="Stage/Items" node_paths=PackedStringArray("Path")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 100, -205)
+collision_mask = 7
+script = ExtResource("10_2bboj")
+Path = NodePath("Path3D")
+Mode = 1
+
+[node name="Path3D" type="Path3D" parent="Stage/Items/[Trigger] LostWorldGravityTriggerAgainst2"]
+curve = SubResource("Curve3D_ghmrj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stage/Items/[Trigger] LostWorldGravityTriggerAgainst2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_vwwdn")
+
+[node name="[Trigger] 2DSplineTrigger" type="Area3D" parent="Stage/Items" node_paths=PackedStringArray("Path")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 59.3202, -717.319)
+collision_mask = 2
+script = ExtResource("13_60he6")
+Path = NodePath("Path3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stage/Items/[Trigger] 2DSplineTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.09725, 7.16619, -37.8452)
+shape = SubResource("BoxShape3D_htx3u")
+
+[node name="Path3D" type="Path3D" parent="Stage/Items/[Trigger] 2DSplineTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.84, 0, 0)
+curve = SubResource("Curve3D_7q6si")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Stage/Items/[Trigger] 2DSplineTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2348, -3.52914, -39.4584)
+shape = SubResource("BoxShape3D_xhjod")
+
+[node name="[Trigger] 2DSplineTrigger2" type="Area3D" parent="Stage/Items" node_paths=PackedStringArray("Path")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 59.3202, -717.319)
+collision_mask = 2
+script = ExtResource("13_60he6")
+Path = NodePath("Path3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stage/Items/[Trigger] 2DSplineTrigger2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8464, 7.16619, -38.9227)
+shape = SubResource("BoxShape3D_htx3u")
+
+[node name="Path3D" type="Path3D" parent="Stage/Items/[Trigger] 2DSplineTrigger2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.91196, 0, 0)
+curve = SubResource("Curve3D_7q6si")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Stage/Items/[Trigger] 2DSplineTrigger2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.97164, -3.37735, -37.2286)
+shape = SubResource("BoxShape3D_1ymkg")
+
+[node name="[Trigger] 2DSplineTrigger3" type="Area3D" parent="Stage/Items" node_paths=PackedStringArray("Path")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7092, 59.3202, -893.635)
+collision_mask = 2
+script = ExtResource("13_60he6")
+Path = NodePath("Path3D")
+TwoDimensionalMode = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stage/Items/[Trigger] 2DSplineTrigger3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 42.79)
+shape = SubResource("BoxShape3D_ntra2")
+
+[node name="Path3D" type="Path3D" parent="Stage/Items/[Trigger] 2DSplineTrigger3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.18394, 0, 3.63995)
+curve = SubResource("Curve3D_cftbc")
+
+[node name="[Trigger]2DSplineCameraTrigger" type="Area3D" parent="Stage/Items" node_paths=PackedStringArray("CameraCurve")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7092, 59.3202, -893.635)
+collision_mask = 2
+script = ExtResource("12_srflh")
+Mode = 4
+ConstantCameraRotation = Quaternion(0, 0, 0, 1)
+CameraCurve = NodePath("../[Trigger] 2DSplineTrigger3/Path3D")
+DisableRaycast = true
+CameraDistance = 10.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stage/Items/[Trigger]2DSplineCameraTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 42.79)
+shape = SubResource("BoxShape3D_ntra2")
+
+[node name="[Interactable] Checkpoint_SV" parent="Stage/Items" instance=ExtResource("15_jub88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -107.641, 1.22347, -42.5158)
+
+[node name="[MovingPlatform] CPZ_MovingPlatformStable" type="Node3D" parent="Stage/Items"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.5442, 4.42169, 0)
+
+[node name="Path3D" type="Path3D" parent="Stage/Items/[MovingPlatform] CPZ_MovingPlatformStable"]
+curve = SubResource("Curve3D_qnddl")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Stage/Items/[MovingPlatform] CPZ_MovingPlatformStable/Path3D"]
+rotation_mode = 0
+loop = false
+tilt_enabled = false
+script = ExtResource("15_j8sfa")
+Speed = 10.0
+MoveMode = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stage/Items/[MovingPlatform] CPZ_MovingPlatformStable/Path3D/PathFollow3D"]
+transform = Transform3D(-4.37114e-08, 4.37114e-08, 1, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_i1rxw")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stage/Items/[MovingPlatform] CPZ_MovingPlatformStable/Path3D/PathFollow3D/MeshInstance3D"]
+collision_layer = 17
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stage/Items/[MovingPlatform] CPZ_MovingPlatformStable/Path3D/PathFollow3D/MeshInstance3D/StaticBody3D"]
+shape = SubResource("CylinderShape3D_s8wps")
+
+[node name="[Interactable] Flamethrower" parent="Stage/Items" instance=ExtResource("16_oq74e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.6844, 0.932078, 22.715)
+
+[node name="[Obstacle] Thorn Cylinder" parent="Stage/Items" instance=ExtResource("17_0ywdy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.43, 2, 19.7314)
+
+[node name="Enemies" type="Node3D" parent="Stage"]
+
+[node name="[Enemy] Spinner" parent="Stage/Enemies" instance=ExtResource("59_kwumx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.46828, 4.81852, -0.651367)
+
+[node name="[Enemy] Spinner2" parent="Stage/Enemies" instance=ExtResource("59_kwumx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.62718, 4.3874, -7.02629)
+
+[node name="[Boss arena] Egg Flamethrower Arena" parent="Stage/Enemies" instance=ExtResource("18_5tj2u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -179.967, 8.77576, -149.905)
+
+[node name="AutorunRoad" type="Path3D" parent="Stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106.673, 4.90312, 0)
+curve = SubResource("Curve3D_ebwb8")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Stage/AutorunRoad"]
+use_collision = true
+polygon = PackedVector2Array(-3, -1, -3, 1, 3, 1, 3, -1)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.5
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = true
+path_continuous_u = true
+path_u_distance = 60.0
+path_joined = false
+material = ExtResource("37_786hh")
+
+[node name="CSGPolygon3DBorderR" type="CSGPolygon3D" parent="Stage/AutorunRoad/CSGPolygon3D"]
+use_collision = true
+polygon = PackedVector2Array(2, 1, 2, 1.5, 3, 1.5, 3, 1)
+mode = 2
+path_node = NodePath("../..")
+path_interval_type = 0
+path_interval = 0.5
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+
+[node name="CSGPolygon3DBorderL" type="CSGPolygon3D" parent="Stage/AutorunRoad/CSGPolygon3D"]
+use_collision = true
+polygon = PackedVector2Array(-3, 1, -3, 1.5, -2, 1.5, -2, 1)
+mode = 2
+path_node = NodePath("../..")
+path_interval_type = 0
+path_interval = 0.5
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+
+[node name="CSGPolygon3DTrigger" type="CSGPolygon3D" parent="Stage/AutorunRoad"]
+visible = false
+calculate_tangents = false
+polygon = PackedVector2Array(0, 0, -3, 0, -3, 2, 3, 2, 3, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Stage/AutorunRoad"]
+transform = Transform3D(0.99895, -0.000769818, 0.0455516, 0.000184592, 0.999917, 0.0128496, -0.0455584, -0.0128282, 0.998853, -0.105688, -0.0257434, -1.99707)
+progress = 2.0
+
+[node name="Area3D" type="Area3D" parent="Stage/AutorunRoad/PathFollow3D" node_paths=PackedStringArray("Path")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+collision_mask = 2
+script = ExtResource("13_60he6")
+Path = NodePath("../..")
+ReleaseOnJump = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stage/AutorunRoad/PathFollow3D/Area3D"]
+transform = Transform3D(1, 1.74623e-10, -3.72529e-09, -1.16415e-10, 1, 0, 0, 0, 1, -0.972572, 1.98377, 0)
+shape = SubResource("BoxShape3D_6fv6k")
+
+[node name="[Interactable] Speed_Pad" parent="Stage/AutorunRoad/PathFollow3D" instance=ExtResource("11_kys5k")]
+transform = Transform3D(1, -4.65661e-10, 2.6077e-08, 0, 0.999999, -1.86265e-09, 1.49012e-08, 1.86265e-09, 0.999999, 0.000183105, 0.999917, 0.0128503)
+MinVelocity = 100.0
+LockInputTime = 2.0
+SnapCamera = false
+
+[node name="PathFollow3D2" type="PathFollow3D" parent="Stage/AutorunRoad"]
+transform = Transform3D(0.954262, -0.0139163, 0.298646, 0.0147174, 0.999866, -0.000432428, -0.298608, 0.00480782, 0.954363, 2.4101, -0.00166123, -92.4475)
+progress = 96.9049
+
+[node name="Area3D" type="Area3D" parent="Stage/AutorunRoad/PathFollow3D2" node_paths=PackedStringArray("Path")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+collision_mask = 2
+script = ExtResource("13_60he6")
+Path = NodePath("../..")
+ReleaseOnJump = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stage/AutorunRoad/PathFollow3D2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.972572, 1.98377, 0)
+shape = SubResource("BoxShape3D_6fv6k")
+
+[node name="[Interactable] Speed_Pad" parent="Stage/AutorunRoad/PathFollow3D2" instance=ExtResource("11_kys5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+MinVelocity = 100.0
+LockInputTime = 2.0
+SnapCamera = false
+
+[node name="PathFollow3D3" type="PathFollow3D" parent="Stage/AutorunRoad"]
+transform = Transform3D(0.996917, -0.0643396, -0.0446843, 0.0557838, 0.983577, -0.171649, 0.0549938, 0.168629, 0.984142, 1.4508, 8.01644, -182.596)
+progress = 193.81
+
+[node name="Area3D" type="Area3D" parent="Stage/AutorunRoad/PathFollow3D3" node_paths=PackedStringArray("Path")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+collision_mask = 2
+script = ExtResource("13_60he6")
+Path = NodePath("../..")
+ReleaseOnJump = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stage/AutorunRoad/PathFollow3D3/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.972572, 1.98377, 0)
+shape = SubResource("BoxShape3D_6fv6k")
+
+[node name="[Interactable] Speed_Pad" parent="Stage/AutorunRoad/PathFollow3D3" instance=ExtResource("11_kys5k")]
+transform = Transform3D(1, 5.58794e-09, 7.45058e-09, -3.72529e-09, 1, 1.49012e-08, 0, 1.49012e-08, 1, 0, 0.999998, -1.52588e-05)
+MinVelocity = 150.0
+LockInputTime = 2.0
+SnapCamera = false
+
+[node name="PathFollow3D4" type="PathFollow3D" parent="Stage/AutorunRoad"]
+transform = Transform3D(0.597826, -0.786068, -0.157163, -0.796177, -0.559424, -0.230534, 0.0932946, 0.262949, -0.960288, 14.0774, 47.0476, -214.063)
+progress = 290.715
+
+[node name="Area3D" type="Area3D" parent="Stage/AutorunRoad/PathFollow3D4" node_paths=PackedStringArray("Path")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+collision_mask = 2
+script = ExtResource("13_60he6")
+Path = NodePath("../..")
+ReleaseOnJump = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stage/AutorunRoad/PathFollow3D4/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.972572, 1.98377, 0)
+shape = SubResource("BoxShape3D_6fv6k")
+
+[node name="[Interactable] Speed_Pad" parent="Stage/AutorunRoad/PathFollow3D4" instance=ExtResource("11_kys5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+MinVelocity = 150.0
+LockInputTime = 2.0
+SnapCamera = false
+
+[node name="PathFollow3D5" type="PathFollow3D" parent="Stage/AutorunRoad"]
+transform = Transform3D(-0.229117, 0.174985, 0.957541, -0.754878, -0.652995, -0.0612934, 0.614544, -0.736871, 0.281704, -19.644, 51.4688, -161.684)
+progress = 367.738
+
+[node name="Area3D" type="Area3D" parent="Stage/AutorunRoad/PathFollow3D5" node_paths=PackedStringArray("Path")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+collision_mask = 2
+script = ExtResource("13_60he6")
+Path = NodePath("../..")
+ReleaseOnJump = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stage/AutorunRoad/PathFollow3D5/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.972572, 1.98377, 0)
+shape = SubResource("BoxShape3D_6fv6k")
+
+[node name="[Interactable] Speed_Pad" parent="Stage/AutorunRoad/PathFollow3D5" instance=ExtResource("11_kys5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+MinVelocity = 150.0
+LockInputTime = 2.0
+SnapCamera = false
+
+[node name="[Interactable] GrindRail" parent="." instance=ExtResource("12_uj43x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.6134, 25, -12.2045)
+
+[node name="PathFollow3D2" parent="[Interactable] GrindRail" instance=ExtResource("42_gwktq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
+progress = 50.0
+
+[node name="[Interactable] GrindRail2" parent="." instance=ExtResource("12_uj43x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.8423, 25, -11.8711)
+curve = SubResource("Curve3D_wnu2v")
+
+[node name="[Interactable] Grind_Booster (FollowPath)" parent="[Interactable] GrindRail2" instance=ExtResource("42_3766v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
+progress = 50.0
+
+[node name="[Interactable] PulleyPath" parent="." instance=ExtResource("40_sfpp8")]
+curve = SubResource("Curve3D_nompr")
+
+[node name="[Interactable] PulleyPath2" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188.595, 6.76886, 337.43)
+curve = SubResource("Curve3D_mikri")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="[Interactable] PulleyPath2"]
+polygon = PackedVector2Array(-0.1, -0.1, 0.1, -0.1, 0.1, 0.1, -0.1, 0.1)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.1
+path_rotation = 2
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+smooth_faces = true
+material = SubResource("StandardMaterial3D_26ldo")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="[Interactable] PulleyPath2"]
+rotation_mode = 0
+cubic_interp = false
+loop = false
+
+[node name="[Interactable] Pulley" type="Node3D" parent="[Interactable] PulleyPath2/PathFollow3D" node_paths=PackedStringArray("PathFollow3D", "PlayerLockPosition", "HomingTarget", "AudioPlayer", "RemoteTransform3D")]
+script = ExtResource("42_vj05h")
+Animation = "PulleyUp"
+PathFollow3D = NodePath("..")
+Speed = 1000.0
+PlayerLockPosition = NodePath("PlayerLockPosition")
+HomingTarget = NodePath("HomingTarget")
+AudioPlayer = NodePath("AudioStreamPlayer3D")
+RemoteTransform3D = NodePath("PlayerLockPosition/RemoteTransform3D")
+
+[node name="pulley" parent="[Interactable] PulleyPath2/PathFollow3D/[Interactable] Pulley" instance=ExtResource("27_1dkr6")]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="[Interactable] PulleyPath2/PathFollow3D/[Interactable] Pulley"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="[Interactable] PulleyPath2/PathFollow3D/[Interactable] Pulley/Area3D"]
+shape = SubResource("SphereShape3D_epbnn")
+
+[node name="HomingTarget" parent="[Interactable] PulleyPath2/PathFollow3D/[Interactable] Pulley" instance=ExtResource("23_tn5wt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+
+[node name="PlayerLockPosition" type="Node3D" parent="[Interactable] PulleyPath2/PathFollow3D/[Interactable] Pulley"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.25, 0)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="[Interactable] PulleyPath2/PathFollow3D/[Interactable] Pulley/PlayerLockPosition"]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="[Interactable] PulleyPath2/PathFollow3D/[Interactable] Pulley"]
+stream = ExtResource("28_s22lf")
+
+[node name="[Interactable] Spring_Red3" parent="." instance=ExtResource("2_s6x8v")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 198, 1, 125)
+MinVelocity = 150.0
+MaxVelocity = 150.0
+
+[node name="[Interactable] Spring_Red4" parent="." instance=ExtResource("2_s6x8v")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 192.743, 1.00001, -370.147)
+MinVelocity = 150.0
+MaxVelocity = 150.0
+
+[node name="[Item] RedRing1" parent="." instance=ExtResource("43_uwck0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 42, 0)
+
+[node name="[Item] RedRing2" parent="." instance=ExtResource("44_vopl1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 42, 0)
+
+[node name="[Item] RedRing3" parent="." instance=ExtResource("45_1j0rc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 42, 0)
+
+[node name="[Item] RedRing4" parent="." instance=ExtResource("46_6etuo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 42, 0)
+
+[node name="[Item] RedRing5" parent="." instance=ExtResource("47_veixa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 42, 0)
+
+[node name="[Interactable] Dash_Ring" parent="." instance=ExtResource("57_fnrby")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 86.1392, 5.2541, -3.11315)
+
+[node name="[Interactable] Goal Ring" parent="." instance=ExtResource("58_8ammw")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -58.7926, 1, -52.2363)
+NextLevel = "res://Games/Example game/Levels/DiscoHill/DiscoHill.tscn"
+S3KTransition = true
+StagesToUnlock = PackedStringArray("DiscoHill1")
+
+[node name="[Item] Rings10" parent="." instance=ExtResource("61_5eskj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.62543, 6.23206, -1.02768)
+
+[node name="[Interactable] JumpPanel15Degrees" parent="." instance=ExtResource("60_ewdrt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 96.8114, 1, -0.00731134)
+
+[node name="[Interactable] JumpPanel30Degrees" parent="." instance=ExtResource("61_cruxb")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 101, 1, 0)
+
+[node name="[Enemy] Motobug" parent="." instance=ExtResource("61_1xi0r")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -285.419, 1.12957, -154.614)
+
+[node name="[Enemy] Cop Speeder" parent="." instance=ExtResource("59_mxf3s")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -266.997, 1, -155.478)
+
+[node name="[Enemy] Motobug2" parent="." instance=ExtResource("61_1xi0r")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 201.929, 110.057, 43.7436)
+
+[node name="laserturret2" parent="." instance=ExtResource("41_v0xnb")]
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 75.006, 1, 4.686)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="laserturret2/w6_obj_laserturret" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="laserturret2/w6_obj_laserturret/StaticBody3D"]
+shape = SubResource("BoxShape3D_6eqhl")
+
+[node name="[Interactable] Laser" parent="laserturret2/w6_obj_laserturret/StaticBody3D/CollisionShape3D" instance=ExtResource("60_fac65")]
+transform = Transform3D(1, 3.55271e-15, 0, 3.55271e-15, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0.800003, 0.0500001)
+
+[node name="Tower" type="Node3D" parent="."]
+
+[node name="[Enemy] Motobug3" parent="Tower" instance=ExtResource("61_1xi0r")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -269.878, 30, 70.6783)
+
+[node name="[Enemy] Cop Speeder2" parent="Tower" instance=ExtResource("59_mxf3s")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -270.098, 89.5, 67.3638)
+
+[node name="[Enemy] Spinner" parent="Tower" instance=ExtResource("59_kwumx")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -270.221, 155, 59.5365)
+
+[node name="[Enemy] Nebula" parent="Tower" instance=ExtResource("59_oqs00")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -269.475, 219.139, 61.0743)
+
+[node name="[Enemy] Egg Pawn Gun2" parent="Tower" instance=ExtResource("62_pi0si")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -270.106, 268, 56.3117)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Tower"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -270, 65, 60)
+layers = 7
+light_energy = 100.0
+spot_range = 55.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Tower"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -270, 125, 60)
+layers = 7
+light_energy = 100.0
+spot_range = 55.0
+
+[node name="SpotLight3D5" type="SpotLight3D" parent="Tower"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -270, 185, 60)
+layers = 7
+light_energy = 100.0
+spot_range = 55.0
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="Tower"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -270, 245, 60)
+layers = 7
+light_energy = 100.0
+spot_range = 55.0
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="Tower"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -270, 300, 60)
+layers = 7
+light_energy = 100.0
+spot_range = 55.0
+
+[node name="[Interactable] GrindRail3" parent="." instance=ExtResource("12_uj43x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 70.2694, -850.193)
+curve = SubResource("Curve3D_e1dhr")
+
+[node name="PathFollow3D" parent="[Interactable] GrindRail3" index="0"]
+transform = Transform3D(-4.37114e-08, 0, -0.999998, 0, 0.999998, 0, 1, 0, -4.37113e-08, 0, 0, 0)
+
+[node name="[Trigger] No2DTrigger" parent="[Interactable] GrindRail3" instance=ExtResource("62_t3gf5")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 50.0315, 5.78436, 0)
+
+[node name="[Enemy] Egg Pawn Gun" parent="." instance=ExtResource("62_pi0si")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -302.327, 1, -147.142)
+
+[node name="[Interactable] GrindRail4" parent="." instance=ExtResource("12_uj43x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.0524, 85.3506, -246.551)
+curve = SubResource("Curve3D_vw3je")
+
+[node name="Cylinder" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 50.5412, 30.6853, 49.059)
+mesh = SubResource("CylinderMesh_u4apl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cylinder"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cylinder/StaticBody3D"]
+shape = SubResource("CylinderShape3D_84nkg")
+
+[node name="[Interactable] Item Box 10 Rings" parent="." instance=ExtResource("64_tspyj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -114.662, 1, -73.5567)
+
+[node name="[Interactable] Spring_Red" parent="." instance=ExtResource("65_itsfd")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 79.0124, 1, -6.42946)
+
+[node name="[Interactable] Spring_Red_Wide" parent="." instance=ExtResource("65_itsfd")]
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, -2, 0, 2, -8.74228e-08, -43.2749, 5.27273, -248.442)
+
+[node name="[Interactable] Item Box 10 Rings2" parent="." instance=ExtResource("64_tspyj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -112.73, 1, -82.0054)
+
+[node name="[Interactable] Item Box 10 Rings3" parent="." instance=ExtResource("64_tspyj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -108.964, 1, -87.8029)
+
+[node name="[Interactable] Item Box 10 Rings4" parent="." instance=ExtResource("64_tspyj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.4099, 1, -86.8708)
+
+[node name="[Interactable] Item Box 10 Rings5" parent="." instance=ExtResource("64_tspyj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80.5771, 1, -84.9971)
+
+[node name="Chaos Emeralds" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.263, 47.2727, -160.214)
+
+[node name="[Item] Chaos Emerald Red" parent="Chaos Emeralds" instance=ExtResource("67_opu58")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="[Item] Chaos Emerald Blue" parent="Chaos Emeralds" instance=ExtResource("68_x307c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+
+[node name="[Item] Chaos Emerald Yellow" parent="Chaos Emeralds" instance=ExtResource("69_rfsny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+
+[node name="[Item] Chaos Emerald Green" parent="Chaos Emeralds" instance=ExtResource("70_7cys4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
+
+[node name="[Item] Chaos Emerald Gray" parent="Chaos Emeralds" instance=ExtResource("71_dhmce")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
+
+[node name="[Item] Chaos Emerald Cyan" parent="Chaos Emeralds" instance=ExtResource("72_y8i2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
+
+[node name="[Item] Chaos Emerald Magenta" parent="Chaos Emeralds" instance=ExtResource("73_w7yg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 0)
+
+[node name="[Interactable] Special Stage Entrance" parent="." instance=ExtResource("74_css6n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.7739, 3.53085, -26.0568)
+
+[node name="Water" type="MeshInstance3D" parent="."]
+process_mode = 3
+transform = Transform3D(400, 0, 0, 0, 100, 0, 0, 0, 90, 443.414, -31.9198, -399.807)
+mesh = SubResource("BoxMesh_cm40f")
+surface_material_override/0 = ExtResource("76_gcfb4")
+
+[node name="Area3D" type="Area3D" parent="Water"]
+reverb_bus_enabled = true
+reverb_bus_amount = 0.1
+reverb_bus_uniformity = 0.5
+script = ExtResource("77_cr33u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Water/Area3D"]
+shape = SubResource("BoxShape3D_ey6ct")
+
+[node name="[Interactable] Checkpoint_SV" parent="." instance=ExtResource("15_jub88")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -112.675, 1, -13.5034)
+
+[node name="2DSectionLayer1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.4874, 0, -192.756)
+
+[node name="[Trigger] 2D Path Trigger" parent="2DSectionLayer1" instance=ExtResource("78_02h0o")]
+curve = SubResource("Curve3D_kb3vi")
+
+[node name="CollisionShape3D_2D" parent="2DSectionLayer1/[Trigger] 2D Path Trigger/Area3D_2D" index="0"]
+disabled = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="2DSectionLayer1/[Trigger] 2D Path Trigger/Area3D_2D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 56.659, -126.511)
+shape = SubResource("BoxShape3D_20mfj")
+
+[node name="CollisionShape3D_Camera" parent="2DSectionLayer1/[Trigger] 2D Path Trigger/Area3D_Camera" index="0"]
+disabled = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="2DSectionLayer1/[Trigger] 2D Path Trigger/Area3D_Camera" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 56.659, -104.388)
+shape = SubResource("BoxShape3D_20mfj")
+
+[node name="CollissionShapeFromCSGPolygon2D" parent="2DSectionLayer1/[Trigger] 2D Path Trigger" index="3"]
+process_mode = 4
+
+[node name="CollissionShapeFromCSGPolygonCamera" parent="2DSectionLayer1/[Trigger] 2D Path Trigger" index="4"]
+process_mode = 4
+
+[node name="2DSectionLayer2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7998, 48.71, -219.978)
+
+[node name="[Trigger] 2D Path Trigger" parent="2DSectionLayer2" instance=ExtResource("78_02h0o")]
+curve = SubResource("Curve3D_kb3vi")
+
+[node name="CollisionShape3D_2D" parent="2DSectionLayer2/[Trigger] 2D Path Trigger/Area3D_2D" index="0"]
+disabled = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="2DSectionLayer2/[Trigger] 2D Path Trigger/Area3D_2D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.3309, -269.592)
+shape = SubResource("BoxShape3D_8688x")
+
+[node name="CollisionShape3D_Camera" parent="2DSectionLayer2/[Trigger] 2D Path Trigger/Area3D_Camera" index="0"]
+disabled = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="2DSectionLayer2/[Trigger] 2D Path Trigger/Area3D_Camera" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.3309, -269.592)
+shape = SubResource("BoxShape3D_8688x")
+
+[node name="CollissionShapeFromCSGPolygon2D" parent="2DSectionLayer2/[Trigger] 2D Path Trigger" index="3"]
+process_mode = 4
+
+[node name="CollissionShapeFromCSGPolygonCamera" parent="2DSectionLayer2/[Trigger] 2D Path Trigger" index="4"]
+process_mode = 4
+
+[node name="[Trigger] No2DTrigger" parent="." instance=ExtResource("62_t3gf5")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -42.8339, 10.1722, -203.727)
+
+[node name="[Enemy] Motobug3" parent="." instance=ExtResource("61_1xi0r")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -3.43151, 67.4864, -286.706)
+
+[node name="[Interactable] Transport Pipe2" parent="." instance=ExtResource("65_w4d8e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -135.62, 7.59236, -4.77491)
+
+[node name="TestStageTutorial1_Welcome" parent="." instance=ExtResource("59_nd2cx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -172.409, 3.25576, -64.1664)
+
+[node name="TestStageTutorial3_Pulley" parent="." instance=ExtResource("59_nd2cx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -190.594, 4.30542, -82.3102)
+
+[node name="Label3D" parent="TestStageTutorial3_Pulley" index="0"]
+text = "Pulleys follow the path defined
+by its Path3D. The line will be generated
+automatically.
+
+This pulley leads to fight against
+Dr. Eggman himself!
+"
+
+[node name="TestStageTutorial2_Enemies" parent="." instance=ExtResource("59_nd2cx")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -230.967, 4, 179.584)
+
+[node name="Label3D" parent="TestStageTutorial2_Enemies" index="0"]
+text = "This is a tower with badniks.
+They are automatically culled at certain
+distance so you can just easily place
+them onto level without worrying about
+optimization too much. Same goes for
+items like rings."
+
+[node name="TestStageTutorial4_EndGoal" parent="." instance=ExtResource("59_nd2cx")]
+transform = Transform3D(-1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, -1, -73.0123, 5.20323, -47.92)
+
+[node name="Label3D" parent="TestStageTutorial4_EndGoal" index="0"]
+text = "It all ends here. The end of the stage.
+Ranks are controlled through StageData,
+but each goal ring can lead into different
+stage.
+
+Ensure that StageData matches with
+stage data in the main menu!"
+
+[node name="TestStageTutorial5_SpecialStage" parent="." instance=ExtResource("59_nd2cx")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -44.3965, 4.07733, -27.4821)
+
+[node name="Label3D" parent="TestStageTutorial5_SpecialStage" index="0"]
+text = "This is an entrance to the Special Stage.
+You can collect Chaos Emeralds there.
+Or 50 rings if you have them all.
+
+If you have them all,
+you can turn into Super Sonic!"
+
+[node name="TestStageTutorial6_MovingPlatform" parent="." instance=ExtResource("59_nd2cx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.9392, 4, -6.20334)
+
+[node name="Label3D" parent="TestStageTutorial6_MovingPlatform" index="0"]
+text = "Moving platform. It moves along Path3D.
+
+If you can't see it, look up."
+
+[node name="TestStageTutorial7_Automation" parent="." instance=ExtResource("59_nd2cx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 117.163, 4, -2.59974)
+
+[node name="Label3D" parent="TestStageTutorial7_Automation" index="0"]
+text = "This is an automated path. Its triggers are
+hidden in dash pads. Touch them to run
+along Path3D.
+If you lock input through dash panel,
+player won't have to press anything.
+Otherwise it will just limit the path of
+movement.
+
+Additionally, it's an example of how you
+can make roads using CSGPolygon3D."
+
+[node name="TestStageTutorial8_LostWorldGravity" parent="." instance=ExtResource("59_nd2cx")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 197.349, 4.43417, 135.633)
+
+[node name="Label3D" parent="TestStageTutorial8_LostWorldGravity" index="0"]
+text = "This spring leads to place with Lost World gravity.
+Path3D controls the direction of gravity, so
+your gravity sasuages can be of any shape.
+
+Everything in Badnik Framework has
+been designed with any gravity in mind."
+
+[node name="TestStageTutorial9_FlatGround" parent="." instance=ExtResource("59_nd2cx")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 27.793, 5, 201.79)
+
+[node name="Label3D" parent="TestStageTutorial9_FlatGround" index="0"]
+text = "This is flat terrain. It may not look like it's flat,
+but it's flat. Walk on it to sense its flatness.
+
+You can make a collider \"flat\" by setting it's
+layer to FlatGround."
+
+[node name="TestStageTutorial10_NoWalkGround" parent="." instance=ExtResource("59_nd2cx")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -59.9325, 5, 210.901)
+
+[node name="Label3D" parent="TestStageTutorial10_NoWalkGround" index="0"]
+text = "This is an unwalkable collider. You can use it
+to ensure player will never walk on it and will just
+slide off.
+
+It's controlled by layer NoWalkGround in the
+collider."
+
+[node name="TestStageTutorial11_2D" parent="." instance=ExtResource("59_nd2cx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.6829, 8.66174, -223.116)
+
+[node name="Label3D" parent="TestStageTutorial11_2D" index="0"]
+text = "2D section ahead!
+It's compromised of few elements:
+- Curve to define walking plane
+- Camera trigger
+- Trigger to set movement"
+
+[node name="TestStageTutorial12_EnemiesIn2D" parent="." instance=ExtResource("59_nd2cx")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.44865, 67.5826, -286.978)
+
+[node name="Label3D" parent="TestStageTutorial12_EnemiesIn2D" index="0"]
+text = "Enemies are affected by gravity triggers
+and 2D triggers just like player.
+
+There's no need to do anything special
+in order for them to work in 2D."
+
+[node name="TestStageTutorial13_Water" parent="." instance=ExtResource("59_nd2cx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 234.567, 24, -373.997)
+
+[node name="Label3D" parent="TestStageTutorial13_Water" index="0"]
+text = "You can run on water if you run into
+it fast enough and with proper angle.
+Or you can just drown."
+
+[node name="TestStageTutorial14_Switch2DLayers" parent="." instance=ExtResource("59_nd2cx")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.279301, 92.6185, -246.999)
+
+[node name="Label3D" parent="TestStageTutorial14_Switch2DLayers" index="0"]
+text = "You can change 2D layers by
+placing a 2D section trigger.
+
+Grind rails and homing attacks ignore 2D.
+It's not a bug, it's a design decision
+to make background bosses easier to make."
+
+[node name="TestStageTutorial15_Curved2D" parent="." instance=ExtResource("59_nd2cx")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 21.0582, 62.3257, -888.496)
+
+[node name="Label3D" parent="TestStageTutorial15_Curved2D" index="0"]
+text = "2D sections can use 3D like
+in Sonic Generations.
+If your Path3D turns, the 2D section
+will turn too."
+
+[node name="TestStageTutorial16_MaxSpeed" parent="." instance=ExtResource("59_nd2cx")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 192.774, 4, 333.637)
+
+[node name="Label3D" parent="TestStageTutorial16_MaxSpeed" index="0"]
+text = "Above is the test of max speed.
+
+Don't forget to roll!"
+
+[node name="TestStageTutorial17_ChaosEmeralds" parent="." instance=ExtResource("59_nd2cx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.1695, 49.2724, -167.904)
+
+[node name="Label3D" parent="TestStageTutorial17_ChaosEmeralds" index="0"]
+text = "Chaos Emeralds can be collected as items
+or through special stages.
+They will be saved after finishing the stage.
+
+KNOWN BUG!: You won't be able to unlock
+Special Stages which you skipped
+by collecting these Emeralds here. You would
+have to manually edit save file."
+
+[node name="TestStageTutorial18_GrindRails" parent="." instance=ExtResource("59_nd2cx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.457, 28.6438, -13.6056)
+
+[node name="Label3D" parent="TestStageTutorial18_GrindRails" index="0"]
+text = "Grind rails. You can swap rails, crouch by
+pressing roll button and dash.
+
+Grind rails are defined by Path3D. Mesh
+will be generated automatically."
+
+[node name="TestStageTutorial19_Boss" parent="." instance=ExtResource("59_nd2cx")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -141.62, 9.5, -139.248)
+
+[node name="Label3D" parent="TestStageTutorial19_Boss" index="0"]
+text = "This is a basic boss fight
+with simple behaviors
+and support for multiple phases.
+Keep in mind that \"waiting\" and \"death\"
+is also a phase."
+
+[node name="TestStageTutorial20_Gimmicks" parent="." instance=ExtResource("59_nd2cx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93.3599, 4, 12.1781)
+
+[node name="Label3D" parent="TestStageTutorial20_Gimmicks" index="0"]
+text = "Basic gimmicks and obstacles
+are here."
+
+[node name="TestStageTutorial21_Pipe" parent="." instance=ExtResource("59_nd2cx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -139.553, 4.92693, -10.3222)
+
+[node name="Label3D" parent="TestStageTutorial21_Pipe" index="0"]
+text = "It's a pipe that is basically
+an invisible pulley.
+
+In case you wanted to port Chemical Plant."
+
+[node name="[Interactable] Checkpoint_3D" parent="." instance=ExtResource("60_82c8v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -182.217, 1, 0)
+
+[node name="[Interactable] Checkpoint_3D2" parent="." instance=ExtResource("60_82c8v")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -175.79, 1, 12.2467)
+
+[node name="[Interactable] Spring_Red2" parent="." instance=ExtResource("2_s6x8v")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 379.997, 3.80728, -618.737)
+MinVelocity = 300.0
+MaxVelocity = 300.0
+
+[node name="[Interactable] Skydiving section" parent="." instance=ExtResource("62_g3e0e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 379.997, 158.771, -618.737)
+
+[node name="[Trigger] ConstantCameraTrigger" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1306.88, 48.7502, -226.038)
+collision_mask = 2
+script = ExtResource("12_srflh")
+Mode = 1
+ConstantCameraRotation = Quaternion(0, -0.707, 0, 0.707)
+FreeOnExit = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="[Trigger] ConstantCameraTrigger"]
+shape = SubResource("BoxShape3D_n7nsl")
+
+[node name="[Interactable] Balloon" parent="." instance=ExtResource("64_th5q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.077, 12.2104, -95.7176)
+
+[node name="[Interactable] Balloon2" parent="." instance=ExtResource("64_th5q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.6856, 12.2104, -95.7176)
+
+[node name="[Interactable] Balloon3" parent="." instance=ExtResource("64_th5q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -77.4859, 12.2104, -95.7176)
+
+[node name="[Interactable] Balloon4" parent="." instance=ExtResource("64_th5q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.077, 12.2104, -88.6079)
+
+[node name="[Interactable] Balloon5" parent="." instance=ExtResource("64_th5q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.6856, 12.2104, -88.6079)
+
+[node name="[Interactable] Balloon6" parent="." instance=ExtResource("64_th5q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -77.4859, 12.2104, -88.6079)
+
+[node name="[Interactable] Balloon7" parent="." instance=ExtResource("64_th5q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.077, 12.2104, -81.688)
+
+[node name="[Interactable] Balloon8" parent="." instance=ExtResource("64_th5q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.6856, 12.2104, -81.688)
+
+[node name="[Interactable] Balloon9" parent="." instance=ExtResource("64_th5q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -77.4859, 12.2104, -81.688)
+
+[node name="[Interactable] Pole v2" parent="." instance=ExtResource("66_ri0yi")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 74.458, 6.7299, -27.6033)
+
+[node name="[Item] Skateboard" parent="." instance=ExtResource("66_i705k")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 689.912, 1.5, -49.6718)
+
+[node name="[Item] Water Bubble" parent="." instance=ExtResource("67_msila")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 346.715, 14.1871, -394.466)
+
+[node name="[Item] Water Bubble2" parent="." instance=ExtResource("67_msila")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 362.715, 14.1871, -394.466)
+
+[connection signal="body_entered" from="Stage/Items/[Trigger] LostWorldGravityTriggerTowards2" to="Stage/Items/[Trigger] LostWorldGravityTriggerTowards2" method="OnAreaEnter"]
+[connection signal="body_exited" from="Stage/Items/[Trigger] LostWorldGravityTriggerTowards2" to="Stage/Items/[Trigger] LostWorldGravityTriggerTowards2" method="OnAreaExit"]
+[connection signal="body_entered" from="Stage/Items/[Trigger] LostWorldGravityTriggerAgainst2" to="Stage/Items/[Trigger] LostWorldGravityTriggerAgainst2" method="OnAreaEnter"]
+[connection signal="body_exited" from="Stage/Items/[Trigger] LostWorldGravityTriggerAgainst2" to="Stage/Items/[Trigger] LostWorldGravityTriggerAgainst2" method="OnAreaExit"]
+[connection signal="body_entered" from="Stage/Items/[Trigger] 2DSplineTrigger" to="Stage/Items/[Trigger] 2DSplineTrigger" method="OnBodyEnter"]
+[connection signal="body_entered" from="Stage/Items/[Trigger] 2DSplineTrigger2" to="Stage/Items/[Trigger] 2DSplineTrigger2" method="OnBodyEnter"]
+[connection signal="body_entered" from="Stage/Items/[Trigger] 2DSplineTrigger3" to="Stage/Items/[Trigger] 2DSplineTrigger3" method="OnBodyEnter"]
+[connection signal="body_entered" from="Stage/Items/[Trigger]2DSplineCameraTrigger" to="Stage/Items/[Trigger]2DSplineCameraTrigger" method="OnBodyEnter"]
+[connection signal="body_entered" from="Stage/AutorunRoad/PathFollow3D/Area3D" to="Stage/AutorunRoad/PathFollow3D/Area3D" method="OnBodyEnter"]
+[connection signal="body_entered" from="Stage/AutorunRoad/PathFollow3D2/Area3D" to="Stage/AutorunRoad/PathFollow3D2/Area3D" method="OnBodyEnter"]
+[connection signal="body_entered" from="Stage/AutorunRoad/PathFollow3D3/Area3D" to="Stage/AutorunRoad/PathFollow3D3/Area3D" method="OnBodyEnter"]
+[connection signal="body_entered" from="Stage/AutorunRoad/PathFollow3D4/Area3D" to="Stage/AutorunRoad/PathFollow3D4/Area3D" method="OnBodyEnter"]
+[connection signal="body_entered" from="Stage/AutorunRoad/PathFollow3D5/Area3D" to="Stage/AutorunRoad/PathFollow3D5/Area3D" method="OnBodyEnter"]
+[connection signal="body_entered" from="[Interactable] PulleyPath2/PathFollow3D/[Interactable] Pulley/Area3D" to="[Interactable] PulleyPath2/PathFollow3D/[Interactable] Pulley" method="OnCollissionEnter"]
+
+[editable path="[Interactable] GrindRail2"]
+[editable path="laserturret2"]
+[editable path="[Interactable] GrindRail3"]
+[editable path="[Interactable] GrindRail3/[Trigger] No2DTrigger"]
+[editable path="[Interactable] Item Box 10 Rings2"]
+[editable path="2DSectionLayer1/[Trigger] 2D Path Trigger"]
+[editable path="2DSectionLayer2/[Trigger] 2D Path Trigger"]
+[editable path="TestStageTutorial1_Welcome"]
+[editable path="TestStageTutorial3_Pulley"]
+[editable path="TestStageTutorial2_Enemies"]
+[editable path="TestStageTutorial4_EndGoal"]
+[editable path="TestStageTutorial5_SpecialStage"]
+[editable path="TestStageTutorial6_MovingPlatform"]
+[editable path="TestStageTutorial7_Automation"]
+[editable path="TestStageTutorial8_LostWorldGravity"]
+[editable path="TestStageTutorial9_FlatGround"]
+[editable path="TestStageTutorial10_NoWalkGround"]
+[editable path="TestStageTutorial11_2D"]
+[editable path="TestStageTutorial12_EnemiesIn2D"]
+[editable path="TestStageTutorial13_Water"]
+[editable path="TestStageTutorial14_Switch2DLayers"]
+[editable path="TestStageTutorial15_Curved2D"]
+[editable path="TestStageTutorial16_MaxSpeed"]
+[editable path="TestStageTutorial17_ChaosEmeralds"]
+[editable path="TestStageTutorial18_GrindRails"]
+[editable path="TestStageTutorial19_Boss"]
+[editable path="TestStageTutorial20_Gimmicks"]
+[editable path="TestStageTutorial21_Pipe"]

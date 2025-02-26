@@ -1,0 +1,30 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://bqh8sx2pqf5aw"]
+
+[ext_resource type="Texture2D" uid="uid://dsup1vwg61lia" path="res://Games/Example game/Levels/TestLevel/gridTexture.png" id="1_pvq8j"]
+[ext_resource type="Texture2D" uid="uid://bgk2kxmovg612" path="res://Games/Example game/Levels/TestLevel/gridTextire_d.png" id="2_86ube"]
+[ext_resource type="Texture2D" uid="uid://dj7sc3cpgy8or" path="res://Games/Example game/Levels/TestLevel/gridTexture_h.png" id="2_ap8sw"]
+[ext_resource type="Texture2D" uid="uid://dvwutourkmypy" path="res://Games/Example game/Levels/TestLevel/gridTexture_n.png" id="3_k2nyd"]
+
+[resource]
+resource_name = "Numbers"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_pvq8j")
+metallic = 0.5
+metallic_texture = ExtResource("2_ap8sw")
+roughness = 0.5
+normal_enabled = true
+normal_scale = 0.25
+normal_texture = ExtResource("3_k2nyd")
+anisotropy_enabled = true
+anisotropy = 1.0
+heightmap_enabled = true
+heightmap_scale = 0.3
+heightmap_deep_parallax = true
+heightmap_min_layers = 8
+heightmap_max_layers = 32
+heightmap_texture = ExtResource("2_ap8sw")
+subsurf_scatter_strength = 0.25
+subsurf_scatter_skin_mode = true
+detail_albedo = ExtResource("2_86ube")
+texture_filter = 1
+distance_fade_max_distance = 20.0

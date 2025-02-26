@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ct1n36nr22ung"]
+
+[ext_resource type="PackedScene" uid="uid://cl7hu3frm6bc8" path="res://SonicAssets/Models/Enemies/EnemySpinner.blend" id="1_31s1q"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o0ln6"]
+animation = &"spn_roll_wing"
+
+[node name="EnemySpinner" instance=ExtResource("1_31s1q")]
+
+[node name="Skeleton3D" parent="enm_spina_HD" index="0"]
+bones/4/rotation = Quaternion(1.89431e-08, 1.89431e-08, 0.770185, 0.63782)
+
+[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer" index="0"]
+tree_root = SubResource("AnimationNodeAnimation_o0ln6")
+anim_player = NodePath("..")
+active = true

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkt2qp7430moc"]
+
+[ext_resource type="Script" path="res://Scripts/Interactables/HomingTarget.cs" id="1_h3ahu"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_i3j5j"]
+radius = 50.0
+
+[node name="HomingTarget" type="Node3D"]
+script = ExtResource("1_h3ahu")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_i3j5j")

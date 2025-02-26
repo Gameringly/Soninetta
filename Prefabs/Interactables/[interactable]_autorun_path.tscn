@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhsikdm7k21nu"]
+
+[ext_resource type="Script" path="res://Scripts/Utils/CollissionShapeFromCSGPolygon.cs" id="1_4gowl"]
+[ext_resource type="Script" path="res://Scripts/Interactables/Spline2DTrigger.cs" id="2_y420c"]
+
+[sub_resource type="Curve3D" id="Curve3D_jrubx"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -23.785, 0, 0, -200),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qbxhl"]
+transparency = 1
+albedo_color = Color(0.172549, 0, 0.631373, 0.32549)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_f2grt"]
+
+[node name="[Interactable] Autorun_Path" type="Path3D"]
+curve = SubResource("Curve3D_jrubx")
+
+[node name="CSGPolygon3DHitbox" type="CSGPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0598373, 0.12599, -0.0594082)
+polygon = PackedVector2Array(-3, -3, -3, 3, 3, 3, 3, -3)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.2
+path_simplify_angle = 5.0
+path_rotation = 2
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+smooth_faces = true
+material = SubResource("StandardMaterial3D_qbxhl")
+
+[node name="Area3D" type="Area3D" parent="." node_paths=PackedStringArray("Path")]
+physics_interpolation_mode = 2
+collision_layer = 256
+collision_mask = 2
+input_ray_pickable = false
+script = ExtResource("2_y420c")
+Path = NodePath("..")
+ReleaseOnDistanceFromPath = 5.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("ConcavePolygonShape3D_f2grt")
+
+[node name="CopyShape" type="Node" parent="Area3D/CollisionShape3D" node_paths=PackedStringArray("Shape", "CsgMesh")]
+script = ExtResource("1_4gowl")
+Shape = NodePath("..")
+CsgMesh = NodePath("../../../CSGPolygon3DHitbox")
+
+[connection signal="curve_changed" from="." to="." method="OnCurveChanged"]

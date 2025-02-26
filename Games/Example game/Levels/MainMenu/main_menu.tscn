@@ -1,0 +1,475 @@
+[gd_scene load_steps=14 format=3 uid="uid://cyn25ql0yjt3s"]
+
+[ext_resource type="Theme" uid="uid://di28qbb7lki3f" path="res://Misc/MenuTheme.tres" id="1_boxas"]
+[ext_resource type="Script" path="res://Scripts/Ui/MainMenuController.cs" id="1_yf0g6"]
+[ext_resource type="Texture2D" uid="uid://bqthtdn326ncw" path="res://SonicAssets/Images/UiRedRing_Yes.png" id="3_48eb3"]
+[ext_resource type="AudioStream" uid="uid://ccaxakjn8bfs4" path="res://SonicAssets/Music/Cosmic Zone - Sonic Jump (2012).ogg" id="4_bc74y"]
+[ext_resource type="VideoStream" path="res://SonicAssets/Videos/Bunnies to Badniks.ogv" id="4_wgwbk"]
+[ext_resource type="PackedScene" uid="uid://dgkaqsfwflj56" path="res://Games/Example game/Levels/Loading/Loading.tscn" id="5_r5636"]
+[ext_resource type="Texture2D" uid="uid://bhsqifesoq5ue" path="res://SonicAssets/Images/UiRedRing_No.png" id="6_027u0"]
+[ext_resource type="Script" path="res://Scripts/Ui/CharacterSelector.cs" id="7_270l6"]
+[ext_resource type="PackedScene" uid="uid://dxybsh1bt5u07" path="res://Prefabs/Menus/options_menu.tscn" id="8_gk3ib"]
+[ext_resource type="PackedScene" uid="uid://d8hhtv3xe6u6" path="res://SonicAssets/Prefabs/Player/player_sonic.tscn" id="8_jnms0"]
+[ext_resource type="Script" path="res://Scripts/Ui/MainMenuStagesData.cs" id="11_jyobf"]
+[ext_resource type="Script" path="res://Scripts/Utils/ErrorLog.cs" id="14_df5f0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nw8di"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_right = 100
+border_color = Color(0.8, 0.8, 0.8, 0)
+border_blend = true
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("MainMenuContainer", "DefaultMainMenuButton", "LevelSelectContainer", "CharacterSelector", "DefaultCharacterSelectorButton", "OptionsMenuContainer", "LoadingScreen", "StagesData", "StageTemplateButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yf0g6")
+MainMenuContainer = NodePath("MainMenuContainer")
+DefaultMainMenuButton = NodePath("MainMenuContainer/Stage select")
+LevelSelectContainer = NodePath("LevelSelectContainer")
+CharacterSelector = NodePath("CharacterSelectContainer")
+DefaultCharacterSelectorButton = NodePath("CharacterSelectContainer/VBoxContainer/Options/PlayButton")
+OptionsMenuContainer = NodePath("OptionsMenu")
+LoadingScreen = NodePath("Loading")
+RedRingYesIcon = ExtResource("3_48eb3")
+RedRingNoIcon = ExtResource("6_027u0")
+StagesData = NodePath("StagesData")
+StageTemplateButton = NodePath("LevelSelectContainer/VBoxContainer/Template")
+
+[node name="Loading" parent="." instance=ExtResource("5_r5636")]
+visible = false
+layout_mode = 1
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("4_wgwbk")
+autoplay = true
+expand = true
+loop = true
+bus = &"SFX"
+
+[node name="MainMenuContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -395.0
+offset_right = 565.0
+grow_vertical = 0
+
+[node name="Story mode" type="Button" parent="MainMenuContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_boxas")
+text = "STORY MODE"
+
+[node name="Stage select" type="Button" parent="MainMenuContainer"]
+layout_mode = 2
+theme = ExtResource("1_boxas")
+text = "STAGE SELECT"
+
+[node name="Options" type="Button" parent="MainMenuContainer"]
+layout_mode = 2
+theme = ExtResource("1_boxas")
+text = "OPTIONS"
+
+[node name="Exit" type="Button" parent="MainMenuContainer"]
+layout_mode = 2
+theme = ExtResource("1_boxas")
+text = "EXIT"
+
+[node name="LevelSelectContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -250.0
+offset_right = 500.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_boxas")
+theme_override_styles/panel = SubResource("StyleBoxFlat_nw8di")
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelSelectContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Template" type="Button" parent="LevelSelectContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme = ExtResource("1_boxas")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelSelectContainer/VBoxContainer/Template"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StageName" type="Label" parent="LevelSelectContainer/VBoxContainer/Template/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Template
+Zone Act"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelSelectContainer/VBoxContainer/Template/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="BestTime" type="Label" parent="LevelSelectContainer/VBoxContainer/Template/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "BEST TIME:  --:--:--"
+
+[node name="BestRank" type="Label" parent="LevelSelectContainer/VBoxContainer/Template/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "BEST RANK: -"
+
+[node name="RedRings" type="HBoxContainer" parent="LevelSelectContainer/VBoxContainer/Template/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="RedRing1" type="TextureRect" parent="LevelSelectContainer/VBoxContainer/Template/HBoxContainer/VBoxContainer/RedRings"]
+layout_mode = 2
+texture = ExtResource("6_027u0")
+stretch_mode = 5
+
+[node name="RedRing2" type="TextureRect" parent="LevelSelectContainer/VBoxContainer/Template/HBoxContainer/VBoxContainer/RedRings"]
+layout_mode = 2
+texture = ExtResource("6_027u0")
+stretch_mode = 5
+
+[node name="RedRing3" type="TextureRect" parent="LevelSelectContainer/VBoxContainer/Template/HBoxContainer/VBoxContainer/RedRings"]
+layout_mode = 2
+texture = ExtResource("6_027u0")
+stretch_mode = 5
+
+[node name="RedRing4" type="TextureRect" parent="LevelSelectContainer/VBoxContainer/Template/HBoxContainer/VBoxContainer/RedRings"]
+layout_mode = 2
+texture = ExtResource("6_027u0")
+stretch_mode = 5
+
+[node name="RedRing5" type="TextureRect" parent="LevelSelectContainer/VBoxContainer/Template/HBoxContainer/VBoxContainer/RedRings"]
+layout_mode = 2
+texture = ExtResource("6_027u0")
+stretch_mode = 5
+
+[node name="Back" type="Button" parent="LevelSelectContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_boxas")
+text = "BACK"
+
+[node name="OptionsMenu" parent="." instance=ExtResource("8_gk3ib")]
+visible = false
+layout_mode = 1
+offset_top = -270.0
+offset_right = 960.0
+offset_bottom = 270.0
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_bc74y")
+autoplay = true
+bus = &"Music"
+
+[node name="CharacterSelectContainer" type="ScrollContainer" parent="." node_paths=PackedStringArray("Container", "PlayerTextTemplate", "OptionTemplate", "PlaceholderTemplate", "PreviousMenu", "NextMenu")]
+custom_minimum_size = Vector2(1440, 810)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -720.0
+offset_top = -405.0
+offset_right = 720.0
+offset_bottom = 405.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_270l6")
+Container = NodePath("VBoxContainer/OptionsContainer")
+CharacterNames = PackedStringArray("Sonic")
+CharacterPrefabs = [ExtResource("8_jnms0")]
+PlayerTextTemplate = NodePath("VBoxContainer/Templates/PlayerTextTemplate")
+OptionTemplate = NodePath("VBoxContainer/Templates/CharacterOptionButtonTemplate")
+PlaceholderTemplate = NodePath("VBoxContainer/Templates/PlaceholderTemplate")
+PreviousMenu = NodePath("../MainMenuContainer")
+NextMenu = NodePath("../LevelSelectContainer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CharacterSelectContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OptionsContainer" type="GridContainer" parent="CharacterSelectContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CharacterSelectContainer/VBoxContainer/OptionsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_boxas")
+text = "Player 1"
+fit_content = true
+
+[node name="CharacterOptionButton" type="OptionButton" parent="CharacterSelectContainer/VBoxContainer/OptionsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_boxas")
+selected = 0
+item_count = 3
+popup/item_0/text = "SONIC"
+popup/item_1/text = "TAILS"
+popup/item_1/id = 1
+popup/item_2/text = "NONE"
+popup/item_2/id = 2
+popup/item_2/disabled = true
+
+[node name="InputOption" type="OptionButton" parent="CharacterSelectContainer/VBoxContainer/OptionsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_boxas")
+selected = 0
+item_count = 6
+popup/item_0/text = "KEYBOARD"
+popup/item_1/text = "PAD 1"
+popup/item_1/id = 1
+popup/item_2/text = "PAD 1"
+popup/item_2/id = 2
+popup/item_2/disabled = true
+popup/item_3/text = "PAD 2"
+popup/item_3/id = 3
+popup/item_4/text = "PAD 3"
+popup/item_4/id = 4
+popup/item_5/text = "PAD 4"
+popup/item_5/id = 5
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CharacterSelectContainer/VBoxContainer/OptionsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_boxas")
+text = "CPU"
+fit_content = true
+
+[node name="NpcOptionButton" type="OptionButton" parent="CharacterSelectContainer/VBoxContainer/OptionsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_boxas")
+selected = 1
+item_count = 3
+popup/item_0/text = "SONIC"
+popup/item_1/text = "TAILS"
+popup/item_1/id = 1
+popup/item_2/text = "NONE"
+popup/item_2/id = 2
+
+[node name="Placeholder" type="Label" parent="CharacterSelectContainer/VBoxContainer/OptionsContainer"]
+layout_mode = 2
+
+[node name="Options" type="HBoxContainer" parent="CharacterSelectContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="CharacterSelectContainer/VBoxContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_boxas")
+text = "PLAY"
+
+[node name="BackButton" type="Button" parent="CharacterSelectContainer/VBoxContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_boxas")
+text = "BACK
+"
+
+[node name="RemovePlayer" type="Button" parent="CharacterSelectContainer/VBoxContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_boxas")
+text = "Players -"
+
+[node name="AddPlayer" type="Button" parent="CharacterSelectContainer/VBoxContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_boxas")
+text = "Players +"
+
+[node name="Templates" type="Control" parent="CharacterSelectContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="PlayerTextTemplate" type="RichTextLabel" parent="CharacterSelectContainer/VBoxContainer/Templates"]
+layout_mode = 2
+offset_right = 478.0
+offset_bottom = 69.0
+size_flags_horizontal = 3
+theme = ExtResource("1_boxas")
+text = "Player 1"
+fit_content = true
+
+[node name="CharacterOptionButtonTemplate" type="OptionButton" parent="CharacterSelectContainer/VBoxContainer/Templates"]
+layout_mode = 0
+size_flags_horizontal = 3
+theme = ExtResource("1_boxas")
+
+[node name="PlaceholderTemplate" type="Label" parent="CharacterSelectContainer/VBoxContainer/Templates"]
+layout_mode = 0
+
+[node name="StagesData" type="Node" parent="."]
+
+[node name="DiscoHill1" type="Node" parent="StagesData"]
+script = ExtResource("11_jyobf")
+StageUniqueIdentifier = "DiscoHill1"
+StageName = "Disco Hill"
+ActName = "Act 1"
+ScenePath = "res://Games/Example game/Levels/DiscoHill/DiscoHill.tscn"
+UnlockedByDefault = true
+HasRedRings = true
+
+[node name="DiscoHill2" type="Node" parent="StagesData"]
+script = ExtResource("11_jyobf")
+StageUniqueIdentifier = "DiscoHill2"
+StageName = "Disco Hill"
+ActName = "Act 2"
+ScenePath = "res://Games/Example game/Levels/DiscoHill/DiscoHill2.tscn"
+HasRedRings = true
+
+[node name="DiscoHillBoss" type="Node" parent="StagesData"]
+script = ExtResource("11_jyobf")
+StageUniqueIdentifier = "DiscoHillB1"
+StageName = "Disco Hill"
+ActName = "Egg Nero"
+ScenePath = "res://Games/Example game/Levels/DiscoHill/DiscoHillB1.tscn"
+
+[node name="TestStage" type="Node" parent="StagesData"]
+script = ExtResource("11_jyobf")
+StageUniqueIdentifier = "TestStage"
+StageName = "Test Stage"
+ScenePath = "res://Games/Example game/Levels/TestLevel/TestStage.tscn"
+UnlockedByDefault = true
+HasRedRings = true
+
+[node name="EmptyStage" type="Node" parent="StagesData"]
+script = ExtResource("11_jyobf")
+StageUniqueIdentifier = "EmptyStage"
+StageName = "Empty Stage"
+ScenePath = "res://Games/Example game/Levels/EmptyStage/EmptyStage.tscn"
+HasRedRings = true
+
+[node name="SpecialStage1" type="Node" parent="StagesData"]
+script = ExtResource("11_jyobf")
+StageUniqueIdentifier = "SpecialStage1"
+StageName = "Special Stage	"
+ActName = "Act 1"
+ScenePath = "res://Games/Example game/Levels/SpecialStage/SpecialStageMania1.tscn"
+StageStyle = 2
+
+[node name="SpecialStage2" type="Node" parent="StagesData"]
+script = ExtResource("11_jyobf")
+StageUniqueIdentifier = "SpecialStage2"
+StageName = "Special Stage	"
+ActName = "Act 2"
+ScenePath = "res://Games/Example game/Levels/SpecialStage/SpecialStageMania2.tscn"
+StageStyle = 2
+
+[node name="SpecialStage3" type="Node" parent="StagesData"]
+script = ExtResource("11_jyobf")
+StageUniqueIdentifier = "SpecialStage3"
+StageName = "Special Stage	"
+ActName = "Act 3"
+ScenePath = "res://Games/Example game/Levels/SpecialStage/SpecialStageMania3.tscn"
+StageStyle = 2
+
+[node name="SpecialStage4" type="Node" parent="StagesData"]
+script = ExtResource("11_jyobf")
+StageUniqueIdentifier = "SpecialStage4"
+StageName = "Special Stage	"
+ActName = "Act 4"
+ScenePath = "res://Games/Example game/Levels/SpecialStage/SpecialStageMania4.tscn"
+StageStyle = 2
+
+[node name="SpecialStage5" type="Node" parent="StagesData"]
+script = ExtResource("11_jyobf")
+StageUniqueIdentifier = "SpecialStage5"
+StageName = "Special Stage	"
+ActName = "Act 5"
+ScenePath = "res://Games/Example game/Levels/SpecialStage/SpecialStageMania5.tscn"
+StageStyle = 2
+
+[node name="SpecialStage6" type="Node" parent="StagesData"]
+script = ExtResource("11_jyobf")
+StageUniqueIdentifier = "SpecialStage6"
+StageName = "Special Stage	"
+ActName = "Act 6"
+ScenePath = "res://Games/Example game/Levels/SpecialStage/SpecialStageMania6.tscn"
+StageStyle = 2
+
+[node name="SpecialStage7" type="Node" parent="StagesData"]
+script = ExtResource("11_jyobf")
+StageUniqueIdentifier = "SpecialStage7"
+StageName = "Special Stage	"
+ActName = "Act 7"
+ScenePath = "res://Games/Example game/Levels/SpecialStage/SpecialStageMania7.tscn"
+StageStyle = 2
+
+[node name="ErrorLog" type="RichTextLabel" parent="."]
+visible = false
+z_index = 32
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_boxas")
+theme_override_font_sizes/bold_italics_font_size = 10
+theme_override_font_sizes/italics_font_size = 10
+theme_override_font_sizes/mono_font_size = 10
+theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/bold_font_size = 10
+script = ExtResource("14_df5f0")
+
+[node name="Copyright" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -720.0
+offset_top = -122.0
+offset_right = -17.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme = ExtResource("1_boxas")
+bbcode_enabled = true
+text = "[right]BF v0.1.2.1 Alpha
+by Gnidel[/right]"
+
+[connection signal="pressed" from="MainMenuContainer/Story mode" to="." method="ToLevelSelectMenu"]
+[connection signal="pressed" from="MainMenuContainer/Stage select" to="." method="ToLevelSelectMenu"]
+[connection signal="pressed" from="MainMenuContainer/Options" to="." method="OnOptions"]
+[connection signal="pressed" from="MainMenuContainer/Exit" to="." method="OnQuit"]
+[connection signal="pressed" from="LevelSelectContainer/VBoxContainer/Back" to="." method="ToMainMenu"]
+[connection signal="pressed" from="CharacterSelectContainer/VBoxContainer/Options/PlayButton" to="CharacterSelectContainer" method="OnPlay"]
+[connection signal="pressed" from="CharacterSelectContainer/VBoxContainer/Options/BackButton" to="CharacterSelectContainer" method="OnBack"]
