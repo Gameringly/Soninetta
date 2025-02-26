@@ -31,7 +31,18 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"materials": {
+"shoes": {
+"use_external/enabled": true,
+"use_external/path": "res://Games/Soninetta/Model/Characters/Sonic/textures/shoes.tres"
+},
+"sonic": {
+"use_external/enabled": true,
+"use_external/path": "res://Games/Soninetta/Model/Characters/Sonic/textures/sonic.tres"
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://j22lwb4o3ovu"]
+
+[ext_resource type="Texture2D" uid="uid://cwiu7gxbf380w" path="res://Games/Soninetta/Model/Characters/Sonic/textures/character-sheets-for-sonic-dream-team-v0-ps1vu1go6x1c1.png" id="1_x4mk1"]
+
+[resource]
+resource_name = "sonic"
+cull_mode = 2
+albedo_texture = ExtResource("1_x4mk1")
+roughness = 0.5
+texture_filter = 2
